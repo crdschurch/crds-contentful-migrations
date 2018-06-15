@@ -16,8 +16,8 @@ class CreatePages < ContentfulMigrations::Migration
         description: 'A piece of content distinguished by a unique path'
       )
       content_type.fields.create(id: 'title', name: 'title', type: 'Symbol', required: true)
-      content_type.fields.create(id: 'body', name: 'body', type: 'Text')
       content_type.fields.create(id: 'slug', name: 'slug', type: 'Symbol', required: true, validations: [uniqueness_of])
+      content_type.fields.create(id: 'body', name: 'body', type: 'Text')
       content_type.save
       content_type.publish
       apply_editor(space, 'slug', 'slugEditor')

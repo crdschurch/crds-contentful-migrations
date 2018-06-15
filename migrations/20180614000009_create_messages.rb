@@ -11,7 +11,7 @@ class CreateMessages < ContentfulMigrations::Migration
   def up
     with_space do |space|
       content_type = space.content_types.create(
-        name: 'Messages',
+        name: 'Message',
         id: @type,
         description: 'An individual message from a series'
       )
