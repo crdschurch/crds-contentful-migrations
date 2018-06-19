@@ -10,7 +10,7 @@ Export the following environment variables with values for your space...
 
 ```
 CONTENTFUL_MANAGEMENT_ACCESS_TOKEN= # Contentful Access token to you management API
-CONTENTFUL_SPACE_ID= # Cotentful SpaceID value
+CONTENTFUL_SPACE_ID= # Contentful SpaceID value
 MIGRATION_PATH=migrations
 ```
 
