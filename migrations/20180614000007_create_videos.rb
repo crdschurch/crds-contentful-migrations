@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreateVideos < RevertableMigration
 
-class CreateVideos < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'video'
-    super(name, version, client, space)
-  end
+  @@content_type_id = 'video'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Video',
-        id: @type,
+        id: content_type_id,
         description: 'An individual video'
       )
 
@@ -28,6 +22,7 @@ class CreateVideos < ContentfulMigrations::Migration
       content_type.fields.create(id: 'transcription', name: 'Transcription', type: 'Text')
       content_type.fields.create(id: 'apple_podcasts_url', name: 'Apple Podcasts URL', type: 'Symbol')
       content_type.fields.create(id: 'google_play_url', name: 'Google Play URL', type: 'Symbol')
+
       items = Contentful::Management::Field.new
       items.type = 'Symbol'
       content_type.fields.create(id: 'tags', name: 'Tags', type: 'Array', items: items)

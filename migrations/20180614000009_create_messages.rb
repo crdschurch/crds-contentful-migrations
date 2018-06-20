@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreateMessages < RevertableMigration
 
-class CreateMessages < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'message'
-    super(name, version, client, space)
-  end
+  @@content_type_id = 'message'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Message',
-        id: @type,
+        id: content_type_id,
         description: 'An individual message from a series'
       )
 

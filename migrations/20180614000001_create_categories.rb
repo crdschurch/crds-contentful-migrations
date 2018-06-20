@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreateCategories < RevertableMigration
 
-class CreateCategories < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'category'
-    super(name, version, client, space)
-  end
+  @@content_type_id = 'category'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Category',
-        id: @type,
+        id: content_type_id,
         description: 'Content is organized by categories'
       )
 

@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreateSongs < RevertableMigration
 
-class CreateSongs < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'song'
-    super(name, version, client, space)
-  end
+  @@content_type_id = 'song'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Song',
-        id: @type,
+        id: content_type_id,
         description: 'An individual song'
       )
 

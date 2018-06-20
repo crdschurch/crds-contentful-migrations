@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreateArticles < RevertableMigration
 
-class CreateArticles < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'article'
-    super(name, version, client, space)
-  end
+  @@content_type_id = 'article'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Article',
-        id: @type,
+        id: content_type_id,
         description: 'Long-form written content, such as a blog post'
       )
 

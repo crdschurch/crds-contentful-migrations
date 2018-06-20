@@ -10,21 +10,13 @@ module MigrationUtils
 
   def apply_editor(space, field, editor)
     with_editor_interfaces do |editor_interfaces|
-      editor_interface = editor_interfaces.default(space.id, @type)
+      editor_interface = editor_interfaces.default(space.id, content_type_id)
       controls = editor_interface.controls.map do |control|
         control["widgetId"] = editor if control["fieldId"] == field
         control
       end
       editor_interface.update(controls: controls)
       editor_interface.reload
-    end
-  end
-
-  def down
-    with_space do |space|
-      content_type = space.content_types.find(@type)
-      content_type.unpublish
-      content_type.destroy
     end
   end
 

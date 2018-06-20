@@ -1,5 +1,3 @@
-require_relative '../lib/migration_utils'
-
 class AddSeriesToMessages < ContentfulMigrations::Migration
   include MigrationUtils
 
