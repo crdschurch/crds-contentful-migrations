@@ -6,11 +6,8 @@ class UpdateMessages < ContentfulMigrations::Migration
 
   def up
     with_space do |space|
-
       content_type = space.content_types.find('message')
-
       content_type.fields.create(id: 'series', name: 'Series', type: 'Link', link_type: 'Entry', required: true, validations: [validation_of_type('series')])
-
       content_type.save
       content_type.publish
     end
@@ -19,10 +16,14 @@ class UpdateMessages < ContentfulMigrations::Migration
   def down
     with_space do |space|
       content_type = space.content_types.find('message')
-      binding.pry
-      content_type.fields.destroy('series')
+
+      field = content_type.fields.detect { |f| f.id == 'series' }
+      field.omitted = true
+      field.disabled = true
+
       content_type.save
-      content_type.publish
+      content_type.activate
+      content_type.fields.destroy('series')
     end
   end
 
