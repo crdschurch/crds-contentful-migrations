@@ -22,6 +22,7 @@ class CreateVideos < RevertableMigration
       content_type.fields.create(id: 'transcription', name: 'Transcription', type: 'Text')
       content_type.fields.create(id: 'apple_podcasts_url', name: 'Apple Podcasts URL', type: 'Symbol')
       content_type.fields.create(id: 'google_play_url', name: 'Google Play URL', type: 'Symbol')
+      content_type.fields.create(id: 'view_count', name: 'View Count', type: 'Number', disabled: true)
 
       items = Contentful::Management::Field.new
       items.type = 'Symbol'
