@@ -1,5 +1,4 @@
 require_relative '../lib/migration_utils'
-require 'pry'
 
 class UpdateMessages < ContentfulMigrations::Migration
   include MigrationUtils
@@ -26,5 +25,4 @@ class UpdateMessages < ContentfulMigrations::Migration
       content_type.fields.destroy('series')
     end
   end
-
 end
