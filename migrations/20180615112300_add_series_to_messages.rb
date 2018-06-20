@@ -1,6 +1,6 @@
 require_relative '../lib/migration_utils'
 
-class UpdateMessages < ContentfulMigrations::Migration
+class AddSeriesToMessages < ContentfulMigrations::Migration
   include MigrationUtils
 
   def up
