@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
-gem "rake"
+gem 'dotenv-rails', require: false
 gem "contentful-migrations"
 gem "pry"
+gem "rake"
