@@ -1,6 +1,6 @@
 class CreatePages < RevertableMigration
 
-  @@content_type_id = 'page'
+  @content_type_id = 'page'
 
   def up
     with_space do |space|

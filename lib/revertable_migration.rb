@@ -3,7 +3,9 @@ require 'migration_utils'
 class RevertableMigration < ContentfulMigrations::Migration
   include MigrationUtils
 
-  @@content_type_id = nil
+  class << self
+    attr_accessor :content_type_id
+  end
 
   def initialize(name = self.class.name, version = nil, client = nil, space = nil)
     raise ContentTypeNotDefined if content_type_id.nil?
@@ -21,7 +23,7 @@ class RevertableMigration < ContentfulMigrations::Migration
   protected
 
     def content_type_id
-      @content_type_id ||= @@content_type_id
+      @content_type_id ||= self.class.content_type_id
     end
 
   class ContentTypeNotDefined < ::StandardError
