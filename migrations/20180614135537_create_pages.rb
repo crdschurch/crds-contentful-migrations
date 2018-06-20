@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreatePages < RevertableMigration
 
-class CreatePages < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'page'
-    super(name, version, client, space)
-  end
+  self.content_type_id = 'page'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Page',
-        id: @type,
+        id: content_type_id,
         description: 'A piece of content distinguished by a unique path'
       )
       content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)

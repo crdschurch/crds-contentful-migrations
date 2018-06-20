@@ -1,18 +1,12 @@
-require_relative '../lib/migration_utils'
+class CreateEpisodes < RevertableMigration
 
-class CreateEpisodes < ContentfulMigrations::Migration
-  include MigrationUtils
-
-  def initialize(name = self.class.name, version = nil, client = nil, space = nil)
-    @type = 'episode'
-    super(name, version, client, space)
-  end
+  self.content_type_id = 'episode'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Episode',
-        id: @type,
+        id: content_type_id,
         description: 'A podcast episode'
       )
 
