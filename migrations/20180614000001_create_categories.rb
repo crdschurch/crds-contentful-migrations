@@ -1,6 +1,6 @@
 class CreateCategories < RevertableMigration
 
-  @@content_type_id = 'category'
+  self.content_type_id = 'category'
 
   def up
     with_space do |space|

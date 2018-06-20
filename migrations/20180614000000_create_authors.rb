@@ -2,7 +2,7 @@ require_relative '../lib/revertable_migration'
 
 class CreateAuthors < RevertableMigration
 
-  @@content_type_id = 'author'
+  self.content_type_id = 'author'
 
   def up
     with_space do |space|

@@ -1,6 +1,6 @@
 class CreateSeries < RevertableMigration
 
-  @@content_type_id = 'series'
+  self.content_type_id = 'series'
 
   def up
     with_space do |space|

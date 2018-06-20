@@ -1,6 +1,6 @@
 class CreatePodcasts < RevertableMigration
 
-  @@content_type_id = 'podcast'
+  self.content_type_id = 'podcast'
 
   def up
     with_space do |space|

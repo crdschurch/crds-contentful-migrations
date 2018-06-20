@@ -1,6 +1,6 @@
 class CreateMessages < RevertableMigration
 
-  @@content_type_id = 'message'
+  self.content_type_id = 'message'
 
   def up
     with_space do |space|

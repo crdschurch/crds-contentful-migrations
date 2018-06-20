@@ -1,6 +1,6 @@
 class CreateVideos < RevertableMigration
 
-  @@content_type_id = 'video'
+  self.content_type_id = 'video'
 
   def up
     with_space do |space|

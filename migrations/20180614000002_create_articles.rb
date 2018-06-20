@@ -1,6 +1,6 @@
 class CreateArticles < RevertableMigration
 
-  @@content_type_id = 'article'
+  self.content_type_id = 'article'
 
   def up
     with_space do |space|

@@ -1,12 +1,12 @@
 class CreatePages < RevertableMigration
 
-  @content_type_id = 'page'
+  self.content_type_id = 'page'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
         name: 'Page',
-        id: @@content_type_id,
+        id: content_type_id,
         description: 'A piece of content distinguished by a unique path'
       )
       content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)

@@ -1,6 +1,6 @@
 class CreateAlbums < RevertableMigration
 
-  @@content_type_id = 'album'
+  self.content_type_id = 'album'
 
   def up
     with_space do |space|

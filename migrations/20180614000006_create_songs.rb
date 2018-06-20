@@ -1,6 +1,6 @@
 class CreateSongs < RevertableMigration
 
-  @@content_type_id = 'song'
+  self.content_type_id = 'song'
 
   def up
     with_space do |space|
