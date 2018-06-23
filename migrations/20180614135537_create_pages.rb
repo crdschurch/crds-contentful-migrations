@@ -12,9 +12,11 @@ class CreatePages < RevertableMigration
       content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)
       content_type.fields.create(id: 'slug', name: 'Slug', type: 'Symbol', required: true, validations: [uniqueness_of])
       content_type.fields.create(id: 'body', name: 'Body', type: 'Text')
+      content_type.fields.create(id: 'show_header', name: 'Show Header?', type: 'Boolean', required: true)
+      content_type.fields.create(id: 'show_footer', name: 'Show Footer?', type: 'Boolean', required: true)
 
       validation_in = Contentful::Management::Validation.new
-      validation_in.in = ['default']
+      validation_in.in = ['container-fluid', 'container', 'eight-column']
       content_type.fields.create(id: 'layout', name: 'Layout', type: 'Symbol', required: true, validations: [validation_in])
 
       content_type.save
