@@ -1,22 +1,21 @@
-class CreatePages < RevertableMigration
+class CreateLocations < RevertableMigration
 
-  self.content_type_id = 'page'
+  self.content_type_id = 'location'
 
   def up
     with_space do |space|
       content_type = space.content_types.create(
-        name: 'Page',
+        name: 'Location',
         id: content_type_id,
-        description: 'A piece of content distinguished by a unique path'
+        description: 'Models the general geographic area or specific physical orientation of a Crossroads community'
       )
-      content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)
+      content_type.fields.create(id: 'name', name: 'Name', type: 'Symbol', required: true)
+      content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)
       content_type.fields.create(id: 'slug', name: 'Slug', type: 'Symbol', required: true, validations: [uniqueness_of])
-      content_type.fields.create(id: 'body', name: 'Body', type: 'Text')
-      content_type.fields.create(id: 'show_header', name: 'Show Header?', type: 'Boolean', required: true)
-      content_type.fields.create(id: 'show_footer', name: 'Show Footer?', type: 'Boolean', required: true)
+      content_type.fields.create(id: 'details', name: 'Details', type: 'Text', required: true) # markup/down block for address, service times, etc
 
       validation_in = Contentful::Management::Validation.new
-      validation_in.in = ['container-fluid', 'container', 'eight-column']
+      validation_in.in = ['default']
       content_type.fields.create(id: 'layout', name: 'Layout', type: 'Symbol', required: true, validations: [validation_in])
 
       items = Contentful::Management::Field.new
@@ -28,5 +27,4 @@ class CreatePages < RevertableMigration
       apply_editor(space, 'slug', 'slugEditor')
     end
   end
-
 end
