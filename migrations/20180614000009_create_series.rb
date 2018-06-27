@@ -20,7 +20,7 @@ class CreateSeries < RevertableMigration
       content_type.fields.create(id: 'youtube_url', name: 'YouTube URL', type: 'Symbol')
       content_type.fields.create(id: 'apple_podcasts_url', name: 'Apple Podcasts URL', type: 'Symbol')
       content_type.fields.create(id: 'google_play_url', name: 'Google Play URL', type: 'Symbol')
-      content_type.fields.create(id: 'videos', name: 'Videos', type: 'Array', items: items_of_type('Entry', ['video', 'messages']))
+      content_type.fields.create(id: 'videos', name: 'Videos', type: 'Array', items: items_of_type('Entry', ['video', 'message']))
       content_type.fields.create(id: 'published_at', name: 'Published At', type: 'Date', required: true)
 
       content_type.save

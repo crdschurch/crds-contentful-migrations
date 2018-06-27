@@ -16,10 +16,11 @@ class CreateMessages < RevertableMigration
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text')
       content_type.fields.create(id: 'author', name: 'Author', type: 'Array', items: items_of_type('Entry', 'author'))
       content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)
-      content_type.fields.create(id: 'source_link', name: 'Source URL', type: 'Symbol')
+      content_type.fields.create(id: 'source_url', name: 'Source URL', type: 'Symbol')
+      content_type.fields.create(id: 'audio_source_url', name: 'Source URL', type: 'Symbol')
       content_type.fields.create(id: 'program', name: 'PDF Program', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'video_duration', name: 'Message Duration', type: 'Symbol')
-      content_type.fields.create(id: 'category', name: 'Category', type: 'Link', link_type: 'Entry', required: true, validations: [validation_of_type('category')])
+      content_type.fields.create(id: 'category', name: 'Category', type: 'Link', link_type: 'Entry', validations: [validation_of_type('category')])
 
       items = Contentful::Management::Field.new
       items.type = 'Symbol'
