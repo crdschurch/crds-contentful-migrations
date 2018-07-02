@@ -19,6 +19,10 @@ class CreatePages < RevertableMigration
       validation_in.in = ['container-fluid', 'container', 'eight-column']
       content_type.fields.create(id: 'layout', name: 'Layout', type: 'Symbol', required: true, validations: [validation_in])
 
+      items = Contentful::Management::Field.new
+      items.type = 'Symbol'
+      content_type.fields.create(id: 'tags', name: 'Tags', type: 'Array', items: items)
+
       content_type.save
       content_type.publish
       apply_editor(space, 'slug', 'slugEditor')
