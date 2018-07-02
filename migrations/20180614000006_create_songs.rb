@@ -28,7 +28,7 @@ class CreateSongs < RevertableMigration
       content_type.fields.create(id: 'audio_duration', name: 'Audio Duration', type: 'Text')
       content_type.fields.create(id: 'album', name: 'Album', type: 'Link', link_type: 'Entry', validations: [validation_of_type('author')])
       content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)
-      content_type.fields.create(id: 'bg_image', name: 'Background Image', type: 'Link', link_type: 'Asset', required: true)
+      content_type.fields.create(id: 'bg_image', name: 'Background Image', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'spotify_url', name: 'Spotify URL', type: 'Symbol')
       content_type.fields.create(id: 'apple_music_url', name: 'Apple Music URL', type: 'Symbol')
       content_type.fields.create(id: 'google_play_url', name: 'Google Play URL', type: 'Symbol')
