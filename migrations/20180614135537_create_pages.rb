@@ -14,6 +14,7 @@ class CreatePages < RevertableMigration
       content_type.fields.create(id: 'body', name: 'Body', type: 'Text')
       content_type.fields.create(id: 'show_header', name: 'Show Header?', type: 'Boolean', required: true)
       content_type.fields.create(id: 'show_footer', name: 'Show Footer?', type: 'Boolean', required: true)
+      content_type.fields.create(id: 'meta_description', name: 'Meta Description', type: 'Symbol') # to be reflected in a Page content model's SSG-emitted web page metadata (e.g. <meta name="description" value="meta_description">)
 
       validation_in = Contentful::Management::Validation.new
       validation_in.in = ['container-fluid', 'container', 'eight-column']
@@ -28,5 +29,4 @@ class CreatePages < RevertableMigration
       apply_editor(space, 'slug', 'slugEditor')
     end
   end
-
 end
