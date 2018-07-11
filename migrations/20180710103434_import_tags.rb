@@ -1,13 +1,3 @@
-# Loop through each JSON entry by ID
-# Update tags field for each entry for the associated tags
-
-# Use the key to get the entry in Contentful
-# Get an array of tag entry objects
-# And then update the entry with the array of entries
-# Publish
-
-# Bonus: Find a clever way to grab all entries first (account for pagination) so when you loop through the JSON object
-
 require 'active_support/core_ext/string'
 
 class ImportTags < ContentfulMigrations::Migration
