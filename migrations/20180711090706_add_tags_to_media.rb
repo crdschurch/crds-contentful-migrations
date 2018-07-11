@@ -1,13 +1,3 @@
-# Loop through each JSON entry by ID
-# Update tags field for each entry for the associated tags
-
-# Use the key to get the entry in Contentful
-# Get an array of tag entry objects
-# And then update the entry with the array of entries
-# Publish
-
-# Bonus: Find a clever way to grab all entries first (account for pagination) so when you loop through the JSON object
-
 class AddTagsToMedia < ContentfulMigrations::Migration
   def up
     with_space do |space|
@@ -25,8 +15,7 @@ class AddTagsToMedia < ContentfulMigrations::Migration
       entries = fetch_entries(space)
 
       data.each do |id, tag_names|
-        # binding.pry
-        entry = entries.detect{|e| e.id.to_i == id.to_i}
+        entry = entries.detect{|e| e.id == id}
         tags = all_tags.select{|t| tag_names.include?(t.title)}
 
         entry.update(tags: tags)
@@ -38,9 +27,4 @@ class AddTagsToMedia < ContentfulMigrations::Migration
       end
     end
   end
-
-  # def down
-  #   with_space do |space|
-  #   end
-  # end
 end
