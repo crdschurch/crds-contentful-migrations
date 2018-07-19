@@ -10,7 +10,7 @@ class CreateTags < RevertableMigration
         description: 'Content is organized by tags'
       )
 
-      content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)
+      content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true, validations: [uniqueness_of])
       content_type.fields.create(id: 'slug', name: 'Slug', type: 'Symbol', required: true, validations: [uniqueness_of])
 
       content_type.save
@@ -26,5 +26,4 @@ class CreateTags < RevertableMigration
       content_type.destroy
     end
   end
-
 end
