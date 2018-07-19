@@ -4,7 +4,7 @@ class AddLeadToArticles < ContentfulMigrations::Migration
   def up
     with_space do |space|
       content_type = space.content_types.find('article')
-      content_type.fields.create(id: 'lead_text', name: 'Lead Text', type: 'Symbol')
+      content_type.fields.create(id: 'lead_text', name: 'Lead Text', type: 'Text')
       content_type.save
       content_type.publish
     end
