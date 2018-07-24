@@ -6,7 +6,7 @@ class AddVideoCollectionToTags < ContentfulMigrations::Migration
     with_space do |space|
       content_type = space.content_types.find('tag')
 
-      content_type.fields.create(id: 'video_collection', name: 'Video Collection?', type: 'Boolean', required: true)
+      content_type.fields.create(id: 'video_collection', name: 'Video Collection?', type: 'Boolean')
 
       content_type.save
       content_type.publish
