@@ -1,4 +1,4 @@
-class AddSoundcloudUrlToSongs < ContentfulMigrations::Migration
+class AddFeaturedToSongs < ContentfulMigrations::Migration
   include MigrationUtils
 
   def up
