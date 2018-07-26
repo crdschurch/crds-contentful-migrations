@@ -15,7 +15,6 @@ class CreatePromos < RevertableMigration
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text')
       content_type.fields.create(id: 'cta', name: 'Call To Action', type: 'Symbol')
       content_type.fields.create(id: 'link_url', name: 'Link URL', type: 'Symbol')
-      content_type.fields.create(id: 'published_at', name: 'Published At', type: 'Date', required: true)
 
       content_type.save
       content_type.publish
