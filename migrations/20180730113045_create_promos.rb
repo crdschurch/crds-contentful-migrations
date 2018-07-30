@@ -15,10 +15,7 @@ class CreatePromos < RevertableMigration
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text')
       content_type.fields.create(id: 'cta', name: 'Call To Action', type: 'Symbol')
       content_type.fields.create(id: 'link_url', name: 'Link URL', type: 'Symbol')
-      content_type.fields.create(id: 'target_audience', name: 'Target Audience', type: 'Array', validations: [
-        in('Churchwide', 'Andover', 'Columbus', 'Cleveland', 'Dayton', 'East Side', 'Florence',
-          'Georgetown', 'Downtown Lexington', 'Mason', 'Oakley', 'Oxford', 'Richmond', 'Uptown', 'West Side')
-      ])
+      content_type.fields.create(id: 'target_audience', name: 'Target Audience', type: 'Array', items: [ type: 'Symbol' ])
 
       content_type.save
       content_type.publish
