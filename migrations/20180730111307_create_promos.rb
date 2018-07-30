@@ -5,7 +5,7 @@ class CreatePromos < RevertableMigration
   def up
     with_space do |space|
       content_type = space.content_types.create(
-        name: 'Promos',
+        name: 'Promo',
         id: content_type_id,
         description: 'Share your message with the world'
       )
