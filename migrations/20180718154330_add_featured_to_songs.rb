@@ -16,15 +16,21 @@ class AddFeaturedToSongs < ContentfulMigrations::Migration
     with_space do |space|
       content_type = space.content_types.find('song')
 
-      field = content_type.fields.detect { |f| f.id == 'call_to_action' || 'featured_subtitle' || 'featured_label' }
-      field.omitted = true
-      field.disabled = true
+      fields = content_type.fields.select { |f| %w{call_to_action featured_subtitle featured_label}.include?(f.id) }
+      fields.each do |field|
+        field.omitted = true
+        field.disabled = true
+      end
 
       content_type.save
-      content_type.activate
+      content_type.publish
+
       content_type.fields.destroy('call_to_action')
       content_type.fields.destroy('featured_subtitle')
       content_type.fields.destroy('featured_label')
+
+      content_type.save
+      content_type.publish
     end
   end
 end
