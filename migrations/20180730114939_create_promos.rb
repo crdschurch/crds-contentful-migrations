@@ -15,6 +15,24 @@ class CreatePromos < RevertableMigration
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text')
       content_type.fields.create(id: 'link_url', name: 'Link URL', type: 'Symbol')
 
+      validations_for_section = Contentful::Management::Validation.new
+      validations_for_section.in = ["Don't Miss", 'Be The Church']
+      
+      validations_for_target = Contentful::Management::Validation.new
+      validations_for_target.in = ['Churchwide', 'Andover', 'Columbus', 'Cleveland', 'Dayton', 'East Side', 'Florence', 'Georgetown', 'Downtown Lexington', 'Mason', 'Oakley', 'Oxford', 'Richmond', 'Uptown', 'West Side']
+
+      section_items = Contentful::Management::Field.new
+      section_items.type = 'Symbol'
+      section_items.validations = [validations_for_section]
+
+      target_items = Contentful::Management::Field.new
+      target_items.type = 'Symbol'
+      target_items.validations = [validations_for_target]
+
+      content_type.fields.create(id: 'section', name: 'Section', type: 'Array', items: section_items)
+
+      content_type.fields.create(id: 'target', name: 'Target Audience', type: 'Array', items: target_items)
+      
       content_type.save
       content_type.publish
     end
