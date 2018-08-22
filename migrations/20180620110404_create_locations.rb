@@ -9,6 +9,7 @@ class CreateLocations < RevertableMigration
         id: content_type_id,
         description: 'Models the attributes of a Crossroads community site'
       )
+
       content_type.fields.create(id: 'name', name: 'Name', type: 'Symbol', required: true)
       content_type.fields.create(id: 'slug', name: 'Slug', type: 'Symbol', required: true, validations: [uniqueness_of])
       content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)
@@ -19,7 +20,7 @@ class CreateLocations < RevertableMigration
       content_type.fields.create(id: 'additional_info', name: 'Additional Info', type: 'Text') # e.g. ASL accessibility info, Downtown Lexington card link (which diverges from all other implementations)
       content_type.fields.create(id: 'map_url', name: 'Map Url', type: 'Text') # potentially longer than 256 characters, so Text (50K) instead of Symbol
       content_type.fields.create(id: 'virtual_tour_url', name: 'Virtual Tour Url', type: 'Text') # potentially longer than 256 characters, so Text (50K) instead of Symbol
-      content_type.fields.create(id: 'come_as_you_are', name: 'Come As You Are', type: 'Link', link_type: 'Asset', required: true) #Image for 'come as you are' spotlight
+      content_type.fields.create(id: 'come_as_you_are_image', name: 'Come As You Are Image', type: 'Link', link_type: 'Asset') #Image for 'come as you are' spotlight
       content_type.fields.create(id: 'community_pastor_image', name: 'Community Pastor Image', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'community_pastor_name', name: 'Community Pastor Name', type: 'Symbol')
       content_type.fields.create(id: 'community_pastor_bio', name: 'Community Pastor Bio', type: 'Text')
@@ -34,6 +35,21 @@ class CreateLocations < RevertableMigration
       items = Contentful::Management::Field.new
       items.type = 'Symbol'
       content_type.fields.create(id: 'tags', name: 'Tags', type: 'Array', items: items)
+
+      # Set Editor UI
+      with_editor_interfaces do |editor_interfaces|
+        editor_interface = editor_interfaces.default(space.id, content_type_id)
+        controls = editor_interface.controls
+        controls.detect { |e| e['fieldId'] == 'bg_image' }['settings'] = { 'helpText' => 'Large image, used for jumbotron' }
+        controls.detect { |e| e['fieldId'] == 'additional_info' }['settings'] = { 'helpText' => 'e.g. ASL interpreting provided by location' }
+        controls.detect { |e| e['fieldId'] == 'map_url' }['settings'] = { 'helpText' => 'e.g. https://www.google.com/maps/place/3500+Madison+Rd,+Cincinnati,+OH+45209' }
+        controls.detect { |e| e['fieldId'] == 'virtual_tour_url' }['settings'] = { 'helpText' => 'Google Maps Virtual Tour' }
+        controls.detect { |e| e['fieldId'] == 'kids_club_hours' }['settings'] = { 'helpText' => 'Kid\'s Club content will only display if this field is populated' }
+        controls.detect { |e| e['fieldId'] == 'student_ministry_hours' }['settings'] = { 'helpText' => 'Student Ministry content will only display if this field is populated' }
+        controls.detect { |e| e['fieldId'] == 'hubspot_form_id' }['settings'] = { 'helpText' => 'This represents the form id (GUID) that represents a specific form in Hubspot; If this field is blank, the form will not show.' }
+        editor_interface.update(controls: controls)
+        editor_interface.reload
+      end
 
       content_type.save
       content_type.publish
