@@ -25,19 +25,15 @@ module MigrationUtils
     items.type = 'Link'
     items.link_type = link_type
     unless validates.nil?
-      if validates.is_a?(Array)
-        validations = validates.collect{|k| validation_of_type(k) }
-      else
-        validations = [ validation_of_type(validates) ]
-      end
+      validations = [ validation_of_type(validates) ]
       items.validations = validations
     end
     items
   end
 
-  def validation_of_type(link_type)
+  def validation_of_type(*types)
     validation_link_content_type = Contentful::Management::Validation.new
-    validation_link_content_type.link_content_type =  [link_type]
+    validation_link_content_type.link_content_type = types.flatten
     validation_link_content_type
   end
   
