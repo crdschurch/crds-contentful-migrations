@@ -29,17 +29,14 @@ class CreateLocations < RevertableMigration
       content_type.fields.create(id: 'spotlight_text', name: 'Spotlight Text', type: 'Text')
       content_type.fields.create(id: 'kids_club_hours', name: 'Kid\'s Club Hours', type: 'Text')
       content_type.fields.create(id: 'student_ministry_hours', name: 'Student Ministry Hours', type: 'Text')
-      content_type.fields.create(id: 'serve_url', name: 'Serve Url', type: 'Symbol')
+      content_type.fields.create(id: 'alternative_serve_url', name: 'Alternative Serve Url', type: 'Symbol')
       content_type.fields.create(id: 'hubspot_form_id', name: 'Hubspot Form ID', type: 'Symbol', validations: [uniqueness_of])
-
-      items = Contentful::Management::Field.new
-      items.type = 'Symbol'
-      content_type.fields.create(id: 'tags', name: 'Tags', type: 'Array', items: items)
 
       # Set Editor UI
       with_editor_interfaces do |editor_interfaces|
         editor_interface = editor_interfaces.default(space.id, content_type_id)
         controls = editor_interface.controls
+        controls.detect { |e| e['fieldId'] == 'image' }['settings'] = { 'helpText' => 'Used for cards and thumbnails' }
         controls.detect { |e| e['fieldId'] == 'bg_image' }['settings'] = { 'helpText' => 'Large image, used for jumbotron' }
         controls.detect { |e| e['fieldId'] == 'additional_info' }['settings'] = { 'helpText' => 'e.g. ASL interpreting provided by location' }
         controls.detect { |e| e['fieldId'] == 'map_url' }['settings'] = { 'helpText' => 'e.g. https://www.google.com/maps/place/3500+Madison+Rd,+Cincinnati,+OH+45209' }
@@ -47,6 +44,7 @@ class CreateLocations < RevertableMigration
         controls.detect { |e| e['fieldId'] == 'kids_club_hours' }['settings'] = { 'helpText' => 'Kid\'s Club content will only display if this field is populated' }
         controls.detect { |e| e['fieldId'] == 'student_ministry_hours' }['settings'] = { 'helpText' => 'Student Ministry content will only display if this field is populated' }
         controls.detect { |e| e['fieldId'] == 'hubspot_form_id' }['settings'] = { 'helpText' => 'This represents the form id (GUID) that represents a specific form in Hubspot; If this field is blank, the form will not show.' }
+        controls.detect { |e| e['fieldId'] == 'alternative_serve_url' }['settings'] = { 'helpText' => 'This URL overrides the serve card located in the Go Deeper section' }
         editor_interface.update(controls: controls)
         editor_interface.reload
       end
