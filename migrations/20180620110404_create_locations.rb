@@ -32,6 +32,9 @@ class CreateLocations < RevertableMigration
       content_type.fields.create(id: 'alternative_serve_url', name: 'Alternative Serve Url', type: 'Symbol')
       content_type.fields.create(id: 'hubspot_form_id', name: 'Hubspot Form ID', type: 'Symbol', validations: [uniqueness_of])
 
+      content_type.save
+      content_type.publish
+      
       # Set Editor UI
       with_editor_interfaces do |editor_interfaces|
         editor_interface = editor_interfaces.default(space.id, content_type_id)
@@ -43,7 +46,7 @@ class CreateLocations < RevertableMigration
         controls.detect { |e| e['fieldId'] == 'virtual_tour_url' }['settings'] = { 'helpText' => 'Google Maps Virtual Tour' }
         controls.detect { |e| e['fieldId'] == 'kids_club_hours' }['settings'] = { 'helpText' => 'Kid\'s Club content will only display if this field is populated' }
         controls.detect { |e| e['fieldId'] == 'student_ministry_hours' }['settings'] = { 'helpText' => 'Student Ministry content will only display if this field is populated' }
-        controls.detect { |e| e['fieldId'] == 'hubspot_form_id' }['settings'] = { 'helpText' => 'This represents the form id (GUID) that represents a specific form in Hubspot; If this field is blank, the form will not show.' }
+        controls.detect { |e| e['fieldId'] == 'hubspot_form_id' }['settings'] = { 'helpText' => 'This represents the form id (GUID) for a specific form in Hubspot; If this field is blank, the form will not show.' }
         controls.detect { |e| e['fieldId'] == 'alternative_serve_url' }['settings'] = { 'helpText' => 'This URL overrides the serve card located in the Go Deeper section' }
         editor_interface.update(controls: controls)
         editor_interface.reload
