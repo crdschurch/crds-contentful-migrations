@@ -36,5 +36,5 @@ module MigrationUtils
     validation_link_content_type.link_content_type = types.flatten
     validation_link_content_type
   end
-
+  
 end
