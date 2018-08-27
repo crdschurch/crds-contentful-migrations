@@ -13,7 +13,7 @@ class CreateChaser < RevertableMigration
       content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)
       content_type.fields.create(id: 'published_at', name: 'Published At', type: 'Date', required: true)
       content_type.fields.create(id: 'intro', name: 'Intro text', type: 'Text', required: true)
-      content_type.fields.create(id: 'chaser_question', name: 'Chaser Question(s)', type: 'Array', items: items_of_type('Entry', 'chaser_question'))
+      content_type.fields.create(id: 'chaser_questions', name: 'Chaser Questions', type: 'Array', items: items_of_type('Entry', 'chaser_question'))
       content_type.fields.create(id: 'outro', name: 'Outro text', type: 'Text')
 
       content_type.save
