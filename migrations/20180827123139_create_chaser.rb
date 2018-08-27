@@ -14,7 +14,7 @@ class CreateChaser < RevertableMigration
       content_type.fields.create(id: 'published_at', name: 'Published At', type: 'Date', required: true)
       content_type.fields.create(id: 'intro', name: 'Intro text', type: 'Text', required: true)
       content_type.fields.create(id: 'chaser_questions', name: 'Chaser Questions', type: 'Array', items: items_of_type('Entry', 'chaser_question'))
-      content_type.fields.create(id: 'outro', name: 'Outro text', type: 'Text')
+      content_type.fields.create(id: 'challenge', name: 'Challenge', type: 'Text')
 
       content_type.save
       content_type.publish
