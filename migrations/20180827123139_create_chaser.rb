@@ -20,12 +20,4 @@ class CreateChaser < RevertableMigration
       content_type.publish
     end
   end
-
-  def down
-    with_space do |space|
-      content_type = space.content_types.find('chaser')
-      content_type.deactivate
-      content_type.destroy
-    end
-  end
 end
