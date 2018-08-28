@@ -31,7 +31,7 @@ class CreatePromos < RevertableMigration
       target_items.validations = [validations_for_target]
 
       content_type.fields.create(id: 'section', name: 'Section', type: 'Array', items: section_items)
-      content_type.fields.create(id: 'target', name: 'Target Audience', type: 'Array', items: target_items)
+      content_type.fields.create(id: 'target_audience', name: 'Target Audience', type: 'Array', items: target_items)
       
       content_type.save
       content_type.publish
