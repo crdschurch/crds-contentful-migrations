@@ -4,7 +4,7 @@ class AddDiscussionToArticles < ContentfulMigrations::Migration
   def up
     with_space do |space|
       content_type = space.content_types.find('article')
-      content_type.fields.create(id: 'discussion', name: 'The Discussion', type: 'Link', link_type: 'Entry', validations: [validation_of_type('discussion')])
+      content_type.fields.create(id: 'discussion', name: 'Discussion', type: 'Link', link_type: 'Entry', validations: [validation_of_type('discussion')])
       content_type.save
       content_type.publish
     end
