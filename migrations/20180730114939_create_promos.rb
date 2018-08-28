@@ -14,6 +14,7 @@ class CreatePromos < RevertableMigration
       content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text')
       content_type.fields.create(id: 'link_url', name: 'Link URL', type: 'Symbol')
+      content_type.fields.create(id: 'published_at', name: 'Published At', type: 'Date', required: true)
 
       validations_for_section = Contentful::Management::Validation.new
       validations_for_section.in = ["Don't Miss", 'Be The Church']
@@ -30,7 +31,6 @@ class CreatePromos < RevertableMigration
       target_items.validations = [validations_for_target]
 
       content_type.fields.create(id: 'section', name: 'Section', type: 'Array', items: section_items)
-
       content_type.fields.create(id: 'target', name: 'Target Audience', type: 'Array', items: target_items)
       
       content_type.save
