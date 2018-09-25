@@ -8,7 +8,7 @@ class AddDropdownToPagesLayout < ContentfulMigrations::Migration
       
       # Set Editor UI
       with_editor_interfaces do |editor_interfaces|
-        editor_interface = editor_interfaces.default('hcu01lso1fic', 'page')
+        editor_interface = editor_interfaces.default(space, 'page')
         controls = editor_interface.controls
         controls.detect { |e| e['fieldId'] == 'layout' }['widgetId'] = "dropdown"
         
