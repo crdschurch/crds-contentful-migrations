@@ -1,6 +1,6 @@
 class CreateSignoff < RevertableMigration
 
-  self.content_type_id = 'signoff'
+  self.content_type_id = 'sign_off'
 
   def up
     with_space do |space|
