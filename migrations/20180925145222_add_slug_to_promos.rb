@@ -9,7 +9,7 @@ class AddSlugToPromos < ContentfulMigrations::Migration
 
       # Set Editor UI
       with_editor_interfaces do |editor_interfaces|
-        editor_interface = editor_interfaces.default('y3a9myzsdjan', 'promo')
+        editor_interface = editor_interfaces.default(space_id, 'promo')
         controls = editor_interface.controls
         controls.detect { |e| e['fieldId'] == 'slug' }['settings'] = { 'helpText' => 'This must be a unique value' }
         controls.detect { |e| e['fieldId'] == 'slug' }['widgetId'] = "slugEditor"
