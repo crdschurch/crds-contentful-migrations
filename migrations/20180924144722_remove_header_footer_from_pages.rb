@@ -12,8 +12,8 @@ class RemoveHeaderFooterFromPages < ContentfulMigrations::Migration
       show_header_field.disabled = true
       show_footer_field.disabled = true
       content_type.save
-      content_type.fields.destroy('show_header')
-      content_type.fields.destroy('show_footer')
+      content_type.fields.destroy(show_header_field)
+      content_type.fields.destroy(show_footer_field)
       content_type.save
       content_type.publish
     end
