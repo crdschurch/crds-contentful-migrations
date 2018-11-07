@@ -18,6 +18,10 @@ class NormalizeDurations < ContentfulMigrations::Migration
     with_space do |space|
       TYPES.each do |type|
         content_type = space.content_types.find(type)
+        field = content_type.fields.detect { |f| f.id == 'duration' }
+        field.omitted = true
+        field.disabled = true
+        content_type.save
         content_type.fields.destroy('duration')
         content_type.save
         content_type.publish
