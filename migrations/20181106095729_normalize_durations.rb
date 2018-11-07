@@ -7,7 +7,7 @@ class NormalizeDurations < ContentfulMigrations::Migration
     with_space do |space|
       TYPES.each do |type|
         content_type = space.content_types.find(type)
-        content_type.fields.create(id: 'duration', name: 'Duration (seconds)', type: 'Number', disabled: true)
+        content_type.fields.create(id: 'duration', name: 'Duration (seconds)', type: 'Number')
         content_type.save
         content_type.publish
       end
