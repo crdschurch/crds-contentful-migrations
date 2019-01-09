@@ -4,7 +4,7 @@ class AddMetaToGeneratedPages < ContentfulMigrations::Migration
 
   def up
     with_space do |space|
-      models = ['album', 'article', 'author', 'category', 'episode','location','message','perspective_set','podcast','series','song','video']
+      models = ['album','article','author','category','episode','location','message','perspective','perspective_set','podcast','series','song','video']
       models.each do |model|
         sleep 0.25 # Avoid Contentful rate limit
         content_type = space.content_types.find(model)        
@@ -17,7 +17,7 @@ class AddMetaToGeneratedPages < ContentfulMigrations::Migration
 
   def down
     with_space do |space|
-      models = ['album', 'article', 'author', 'category', 'episode','location','message','perspective_set','podcast','series','song','video']
+      models = ['album','article','author','category','episode','location','message','perspective','perspective_set','podcast','series','song','video']
       models.each do |model|
         sleep 0.25 # Avoid Contentful rate limit
         field = content_type.fields.detect { |f| f.id == 'meta' }
