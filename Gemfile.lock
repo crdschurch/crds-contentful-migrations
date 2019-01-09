@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ample/contentful-migrations.rb
+  revision: e421f37cbc812c54ca92316a2282608179c4767c
+  specs:
+    contentful-migrations (0.1.1)
+      contentful-management (~> 2.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,8 +35,6 @@ GEM
       http (> 1.0, < 3.0)
       json (~> 1.8)
       multi_json (~> 1)
-    contentful-migrations (0.1.1)
-      contentful-management (~> 1.10.1)
     crass (1.0.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
@@ -90,7 +95,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  contentful-migrations
+  contentful-migrations!
   dotenv-rails
   pry
   rack (>= 2.0.6)
