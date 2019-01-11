@@ -12,15 +12,24 @@ class Seeder
       environment = contentful.environments(ENV['CONTENTFUL_SPACE_ID']).find(ENV['CONTENTFUL_ENV'] || 'master')
       content_types = environment.content_types.all.map { |t| [t.id, t] }.to_h
 
-      request = environment.assets.all(limit: 1000)
-      assets = request.to_a
-
-      (request.total / 1000).times do
-        request = request.next_page
-        assets.concat(request.to_a)
+      puts 'Fetching assets ...'
+      asset_request = environment.assets.all(limit: 1000)
+      assets = asset_request.to_a
+      (asset_request.total / 1000).times do
+        puts 'Fetching assets ...'
+        asset_request = asset_request.next_page
+        assets.concat(asset_request.to_a)
       end
-
       assets.select! { |a| a.file }.compact
+
+      puts 'Fetching entries ...'
+      entry_request = environment.entries.all(limit: 1000)
+      entries = entry_request.to_a
+      (entry_request.total / 1000).times do
+        puts 'Fetching entries ...'
+        entry_request = entry_request.next_page
+        entries.concat(entry_request.to_a)
+      end
 
       files.each do |file|
         body = File.read(file)
@@ -35,9 +44,14 @@ class Seeder
         frontmatter.symbolize_keys!
 
         frontmatter.each do |k, v|
-          next unless v.start_with?('//')
-          asset = assets.detect { |a| a.file.url == v }
-          frontmatter[k] = asset if asset
+          next unless v.is_a?(Hash) && %w{asset entry}.include?(v['type'])
+          if v['type'] == 'asset'
+            asset = assets.detect { |a| a.file.url == v['url'] }
+            frontmatter[k] = asset if asset
+          else
+            entry = entries.detect { |e| e.fields[v['field'].to_sym] == v['value'] }
+            frontmatter[k] = entry if entry
+          end
         end
 
         entry = content_types[content_type].entries.create(frontmatter)
