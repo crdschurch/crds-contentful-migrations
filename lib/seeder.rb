@@ -16,20 +16,28 @@ class Seeder
       asset_request = environment.assets.all(limit: 1000)
       assets = asset_request.to_a
       (asset_request.total / 1000).times do
-        puts 'Fetching assets ...'
+        puts 'Fetching next page ...'
         asset_request = asset_request.next_page
         assets.concat(asset_request.to_a)
       end
       assets.select! { |a| a.file }.compact
 
-      puts 'Fetching entries ...'
-      entry_request = environment.entries.all(limit: 1000)
-      entries = entry_request.to_a
-      (entry_request.total / 1000).times do
-        puts 'Fetching entries ...'
-        entry_request = entry_request.next_page
-        entries.concat(entry_request.to_a)
+      content_types.each do |id, obj|
+        puts "Fetching entries for content type: #{id} ..."
+        entry_request = environment.entries.all(limit: 1000, content_type: id)
+        entries = entry_request.to_a
+        (entry_request.total / 1000).times do
+          puts 'Fetching next page ...'
+          entry_request = entry_request.next_page
+          entries.concat(entry_request.to_a)
+        end
+        content_types[id] = {
+          entries: entries,
+          obj: obj
+        }
       end
+
+      # binding.pry
 
       files.each do |file|
         body = File.read(file)
@@ -44,17 +52,21 @@ class Seeder
         frontmatter.symbolize_keys!
 
         frontmatter.each do |k, v|
-          next unless v.is_a?(Hash) && %w{asset entry}.include?(v['type'])
-          if v['type'] == 'asset'
-            asset = assets.detect { |a| a.file.url == v['url'] }
-            frontmatter[k] = asset if asset
-          else
-            entry = entries.detect { |e| e.fields[v['field'].to_sym] == v['value'] }
-            frontmatter[k] = entry if entry
+          next unless v.is_a?(Hash) && %w{asset entry entries}.include?(v['type'])
+          attachment = case v['type']
+          when 'asset'
+            assets.detect { |a| a.file.url == v['url'] }
+          when 'entry'
+            content_types[v['content_type']][:entries].detect { |e| e.fields[v['field'].to_sym] == v['value'] }
+          when 'entries'
+            content_types[v['content_type']][:entries]
+              .select { |e| v['values'].include?(e.fields[v['field'].to_sym]) }
+              .sort_by { |e| v['values'].index(e.fields[v['field'].to_sym]) }
           end
+          frontmatter[k] = attachment if attachment
         end
 
-        entry = content_types[content_type].entries.create(frontmatter)
+        entry = content_types[content_type][:obj].entries.create(frontmatter)
         entry.publish
       end
     end

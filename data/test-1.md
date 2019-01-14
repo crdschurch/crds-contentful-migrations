@@ -10,6 +10,14 @@ author:
   content_type: author
   field: full_name
   value: Sophie Beya
+tags:
+  type: entries
+  content_type: tag
+  field: title
+  values:
+    - loneliness
+    - diversity
+    - faith
 ---
 
 This is the body
