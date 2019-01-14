@@ -13,32 +13,22 @@ namespace :contentful_migrations do
       puts "Message: #{ENV['TRAVIS_COMMIT_MESSAGE']}"
     end
 
+    # 1. If PR, create ENV and run all migrations
+    # 2. If push to PR, create ENV (if it doesnt exist already) and run all migrations
+    # 3. If push to primary ENV branch, run all migrations
+
     # -----
 
-    is_pr = (ENV['TRAVIS_PULL_REQUEST'] != 'false')
-    regex = /^Merge\spull\srequest\s#[0-9]+\sfrom\scrdschurch\/([a-zA-Z0-9\-\/]+)$/
-    matches = ENV['TRAVIS_COMMIT_MESSAGE'].match(regex) rescue nil
-
-    # If this build results from push who's
-    # commit message looks like a merged PR destroy the
-    # environment who's ID matches the previously merged branch.
-    if !is_pr && matches
-      branch_name = matches[1]
-      Environments.new.destroy!(branch_name)
-
-    # If this build is tied to a PR, create a new
-    # ENV based on the name of this branch and run
-    # any pending migrations.
-    elsif is_pr && !%w(development release master).include?(ENV['TRAVIS_BRANCH'])
-      env = Environments.new.create!(ENV['TRAVIS_BRANCH'])
+    if ENV['TRAVIS_PULL_REQUEST'] != 'false'
+      env = Environments.new.create!(ENV['TRAVIS_PULL_REQUEST_BRANCH'])
       if env
         ContentfulMigrations::Migrator.migrate(env_id: env)
+        Environments.new.destroy!(ENV['TRAVIS_PULL_REQUEST_BRANCH'])
       end
-
-    # If this build is tied to an actual environment,
-    # run any pending migrations.
-    elsif !is_pr && %w(development release master).include?(ENV['TRAVIS_BRANCH'])
-      ContentfulMigrations::Migrator.migrate(env_id: ENV['TRAVIS_BRANCH'])
+    elsif %w(development release master).include?(ENV['TRAVIS_BRANCH'])
+      branch_name = ENV['TRAVIS_BRANCH']
+      branches = { development: 'int', release: 'demo', master: 'master' }
+      ContentfulMigrations::Migrator.migrate(env_id: branches[branch_name])
     end
   end
 
