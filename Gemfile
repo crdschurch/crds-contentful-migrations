@@ -4,6 +4,9 @@ gem 'dotenv-rails', require: false
 gem "contentful-migrations", git: 'https://github.com/ample/contentful-migrations.rb'
 gem "pry"
 gem "rake"
+gem "httparty"
+gem "activesupport"
+gem "waitutil"
 
 # fix security issues
 # https://nvd.nist.gov/vuln/detail/CVE-2018-16471
