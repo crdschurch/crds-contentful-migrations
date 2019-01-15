@@ -28,7 +28,7 @@ namespace :contentful_migrations do
     elsif %w(development release master).include?(ENV['TRAVIS_BRANCH'])
       branch_name = ENV['TRAVIS_BRANCH']
       branches = { development: 'int', release: 'demo', master: 'master' }
-      ContentfulMigrations::Migrator.migrate(env_id: branches[branch_name])
+      ContentfulMigrations::Migrator.migrate(env_id: branches[branch_name.intern])
     end
   end
 
