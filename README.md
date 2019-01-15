@@ -143,7 +143,7 @@ Body content falls two lines below the YAML frontmatter and should be written as
 
 Here is the simplest of examples. (See below for usage docs.)
 
-```md
+```markdown
 ---
 _content_type: article
 title: Hello World
@@ -165,7 +165,7 @@ All meta data begin with an underscore. If a frontmatter key does not begin with
 - `_content_type`: The ID of the content type for the entry that should be created. **This is required** of every seed.
 - `_body_field`: If you are including body content in the seed and the field for which the body should be saved **is not called `body`**, then you should include this option, which maps the seed's body content to a field on the model. For example:
 
-    ```md
+    ```markdown
     ---
     _content_type: article
     _body_field: description
@@ -179,7 +179,7 @@ All meta data begin with an underscore. If a frontmatter key does not begin with
 
 All other fields (all fields that don't begin with an underscore) are mapped directly to fields in Contentful. For example, this would create an article with `Hello World` as the `title` and `hello-world` as the `slug`:
 
-```md
+```markdown
 ---
 _content_type: article
 title: Hello World
@@ -250,7 +250,7 @@ tags:
 
 Putting all these examples together looks like this:
 
-```md
+```markdown
 ---
 _content_type: article
 title: Article Title
