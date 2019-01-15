@@ -1,7 +1,9 @@
 class AddInteractionCounts < ContentfulMigrations::Migration
   include MigrationUtils
 
-  content_types = %w(album article author episode message podcast series song video)
+  def content_types
+    @content_types ||= %w(album article author episode message podcast series song video)
+  end
 
   def up
     with_space do |space|
