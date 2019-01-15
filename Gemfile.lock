@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/ample/contentful-migrations.rb
-  revision: e421f37cbc812c54ca92316a2282608179c4767c
+  remote: https://github.com/monkseal/contentful-migrations.rb
+  revision: a84c7541ba8e66abdee2d393eafc0e0b2fbb8c3b
   specs:
     contentful-migrations (0.1.1)
       contentful-management (~> 2.6)
