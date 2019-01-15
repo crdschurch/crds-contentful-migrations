@@ -1,0 +1,13 @@
+class <%= class_name %> < ContentfulMigrations::Migration
+  def up
+    with_space do |space|
+      # Do stuff ...
+    end
+  end
+
+  def down
+    with_space do |space|
+      # Undo stuff ...
+    end
+  end
+end
