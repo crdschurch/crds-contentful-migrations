@@ -5,6 +5,8 @@ require 'active_support/all'
 class Seeder
 
   class << self
+    attr_accessor :assets, :entries
+
     def seed!(options = {})
       files = Dir.glob('data/**/*')
 
@@ -14,7 +16,7 @@ class Seeder
 
       puts 'Fetching assets ...'
       asset_request = environment.assets.all(limit: 1000)
-      assets = asset_request.to_a
+      self.assets = asset_request.to_a
       (asset_request.total / 1000).times do
         puts 'Fetching next page ...'
         asset_request = asset_request.next_page
@@ -22,19 +24,13 @@ class Seeder
       end
       assets.select! { |a| a.file }.compact
 
-      content_types.each do |id, obj|
-        puts "Fetching entries for content type: #{id} ..."
-        entry_request = environment.entries.all(limit: 1000, content_type: id)
-        entries = entry_request.to_a
-        (entry_request.total / 1000).times do
-          puts 'Fetching next page ...'
-          entry_request = entry_request.next_page
-          entries.concat(entry_request.to_a)
-        end
-        content_types[id] = {
-          entries: entries,
-          obj: obj
-        }
+      puts 'Fetching entries ...'
+      entry_request = environment.entries.all(limit: 1000)
+      self.entries = entry_request.to_a
+      (entry_request.total / 1000).times do
+        puts 'Fetching next page ...'
+        entry_request = entry_request.next_page
+        entries.concat(entry_request.to_a)
       end
 
       # binding.pry
@@ -47,26 +43,18 @@ class Seeder
         body.strip!
 
         content_type = frontmatter['_content_type']
+        linked_fields = frontmatter['_linked_fields']
         frontmatter[frontmatter['_body_field'] || 'body'] = body if body
         frontmatter.keys.select { |k| k.start_with?('_') }.map { |k| frontmatter.delete(k) }
         frontmatter.symbolize_keys!
 
         frontmatter.each do |k, v|
-          next unless v.is_a?(Hash) && %w{asset entry entries}.include?(v['type'])
-          attachment = case v['type']
-          when 'asset'
-            assets.detect { |a| a.file.url == v['url'] }
-          when 'entry'
-            content_types[v['content_type']][:entries].detect { |e| e.fields[v['field'].to_sym] == v['value'] }
-          when 'entries'
-            content_types[v['content_type']][:entries]
-              .select { |e| v['values'].include?(e.fields[v['field'].to_sym]) }
-              .sort_by { |e| v['values'].index(e.fields[v['field'].to_sym]) }
-          end
-          frontmatter[k] = attachment if attachment
+          next unless [v].flatten.first.match(/^(asset|entry):/)
+          attachments = [v].flatten.map { |a| send(a.split(':').first.pluralize).detect { |x| x.id == a.split(':').last } }
+          frontmatter[k] = v.is_a?(Array) ? attachments : attachments.first if attachments
         end
 
-        entry = content_types[content_type][:obj].entries.create(frontmatter)
+        entry = content_types[content_type].entries.create(frontmatter)
         entry.publish
       end
     end
