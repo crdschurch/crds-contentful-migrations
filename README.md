@@ -187,92 +187,29 @@ slug: hello-world
 ---
 ```
 
-Aside from text string and text fields, there are three custom fields that are supported:
+#### Linking Entries and Assets
 
-- `asset`: A media asset attachment.
-- `entry`: A link to a single entry.
-- `entries`: Links to multiple entries.
+In Contentful, some fields can act as a link or array of links to either entries or assets. Consider an example in which an article has many tags. A tag is a content type containing multiple entries that can be linked to an article entry.
 
-Each of these links to content that already exists in the `master` environment when the environment is created. However, the ID values change when a new environment is created. Therefore, the assets must be mapped by unique values. Each field using one of these custom types should be an object with the appropriate options. Every field requires a `type` attribute with the name of its type, although the additional attributes are customize by type. Here's an example:
+The seeder is intelligent enough to know when a field is a link (or array of links). All it requires is that you reference the ID of the linked item.
 
-```yaml
-field_name:
-  type: asset
-  # Other options ...
-```
+When creating environments in Contentful off the `master` environment, the other environments begin as an exact clone, down to each entry's and asset's `id` value. Therefore, we can maintain these seeds over time without needing to change the `id` value, because as long as that value exists in the `master` environment, it will be available in other cloned environments (assuming it was created _before_ the environment was clone and that it hasn't since been deleted).
 
-Let's look at each field type:
+Let's look at an example. Consider that we have an article we want to seed with two linked fields:
 
-##### asset
+1. `image`: An asset link.
+2. `tags`: An array of linked entries.
 
-An asset requires a `url` field as the URL to the asset within Contentful. For example, if we have an `image` field for which we want to attach an asset, it might look like this:
+For `image`, we'll pass the `id` value of the image we want to attach, and for `tags` we'll do the same, but as a YAML array. The resulting frontmatter will look something like this:
 
 ```yaml
-image:
-  type: asset
-  url: //images.ctfassets.net/y3a9myzsdjan/5UoGrEuoIos6IC6cA0AqKu/79b16cc5dd6e4a99b858d2d09aba3c1f/unnamed.jpg
-```
-
-Note that the URL should begin with two slashes and should be hosted at the ctfassets.net domain. If either of these conditions is not true, it's unlikely that your asset will work.
-
-##### entry
-
-Linking to a single entry is similar, except we need to specify the content type and the field to which we should map. For example, let's say we have a field called `author` and we want to link it to an entry with the `author` content type, and we're going to retrieve that entry using the `full_name` field. That would look something like this:
-
-```yaml
-author:
-  type: entry
-  content_type: author
-  field: full_name
-  value: Sophie Beya
-```
-
-When the seed runs, it will look for an author with the name "Sophie Beya" and if it finds a record, it will attach it to the seeded entry.
-
-##### entries
-
-You can also link to an array of entries. The only difference between the `entry` and `entries` fields is that `value` becomes `values` and is an array of values. Because of this, we are limited to targeting only a single content type and mapping against a single field.
-
-Let's say we have a `tag` field on our seed and we want to associate a set of `tag` entries to it. That might look like this:
-
-```yaml
-tags:
-  type: entries
-  content_type: tag
-  field: title
-  values:
-    - loneliness
-    - diversity
-    - faith
-```
-
-### Combined Example
-
-Putting all these examples together looks like this:
-
-```markdown
----
 _content_type: article
-title: Article Title
-image:
-  type: asset
-  url: //images.ctfassets.net/y3a9myzsdjan/5UoGrEuoIos6IC6cA0AqKu/79b16cc5dd6e4a99b858d2d09aba3c1f/unnamed.jpg
-author:
-  type: entry
-  content_type: author
-  field: full_name
-  value: Sophie Beya
+title: Hello World
+image: 4Zxm0bwR9eWSiuw442WAqS
 tags:
-  type: entries
-  content_type: tag
-  field: title
-  values:
-    - loneliness
-    - diversity
-    - faith
----
-
-This is the body content and it will be mapped to the `body` field because `_body_field` was not specified in the frontmatter.
+  - luZPICyHVQUYQYSAa6Imu
+  - 1JWjoImLpWAeWMCWI2WOaM
+  - 31xMlxGaBWKw0aYK2ESgQA
 ```
 
 License
