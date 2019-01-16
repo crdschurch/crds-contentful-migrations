@@ -6,6 +6,7 @@ gem 'contentful-migrations', git: 'https://github.com/monkseal/contentful-migrat
 gem 'httparty'
 gem 'pry'
 gem 'rake'
+gem 'rspec'
 gem 'waitutil'
 
 # fix security issues
