@@ -44,12 +44,14 @@ class Seed
   # Create an entry in Contentful and store a reference to it.
   #
   def create_entry!
+    raise "Can't create an entry without fields." if fields.blank?
     self.entry = content_type.entries.create(fields)
   end
 
   # Publish the Contentful entry.
   #
   def publish_entry!
+    raise "Can't publish without creating an entry." if entry.blank?
     entry.publish
   end
 
@@ -130,11 +132,11 @@ class Seed
     # instance.
     #
     def method_missing(m, *args, &block)
-      frontmatter.symbolize_keys[m.to_sym] || super
+      (frontmatter || {}).symbolize_keys[m.to_sym] || super
     end
 
     def respond_to_missing?(method_name, include_private = false)
-      frontmatter.symbolize_keys.keys.include?(method_name.to_sym) || super
+      (frontmatter || {}).symbolize_keys.keys.include?(method_name.to_sym) || super
     end
 
 end

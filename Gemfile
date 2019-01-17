@@ -7,7 +7,9 @@ gem 'httparty'
 gem 'pry'
 gem 'rake'
 gem 'rspec'
+gem 'vcr'
 gem 'waitutil'
+gem 'webmock'
 
 # fix security issues
 # https://nvd.nist.gov/vuln/detail/CVE-2018-16471
