@@ -15,7 +15,7 @@ class Environments
   end
 
   def create!(env)
-    id = env.parameterize
+    id = env[0..39].parameterize
     unless ls.include?(id)
       response = self.class.put("#{@path}/#{id}", body: { name: id }.to_json, headers: @headers)
       if response.success?
@@ -32,7 +32,7 @@ class Environments
   end
 
   def destroy!(env)
-    id = env.parameterize
+    id = env[0..39].parameterize
     if ls.include?(id)
       response = self.class.delete("#{@path}/#{id}", headers: @headers)
       if response.success?
