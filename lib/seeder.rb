@@ -52,7 +52,7 @@ class Seed
   #
   def publish_entry!
     raise "Can't publish without creating an entry." if entry.blank?
-    entry.publish
+    self.entry = entry.publish
   end
 
   private
@@ -77,7 +77,8 @@ class Seed
     # parsing any linked entries, along with the body.
     #
     def extract_fields!
-      return if fields
+      return unless fields.blank?
+      raise "Can not extract fields without frontmatter." if frontmatter.blank?
       self.fields = frontmatter.clone
       fields.keys.select { |k| k.to_s.start_with?('_') }.map { |k| fields.delete(k) }
       parse_field_links!
@@ -88,6 +89,7 @@ class Seed
     # Retrieve linked objects and set the field value to the Contentful object.
     #
     def parse_field_links!
+      raise "Field links must be parsed via #extract_fields!." if fields.blank?
       fields.each do |k, v|
         field = content_type.fields.detect { |f| f.id == k.to_s }
         next unless field && %w(Link Array).include?(field.type) && [v].flatten.first.is_a?(String)
@@ -102,6 +104,7 @@ class Seed
     # attempt to set it again. It also doesn't get set if there is no body.
     #
     def set_body_field!
+      raise "Body must be set via #extract_fields!." if fields.blank?
       body_field = frontmatter[:_body_field] || 'body'
       return if fields[body_field.to_sym]
       fields[body_field.to_sym] = body if body.present?
