@@ -70,7 +70,7 @@ describe Seed do
         seed.send(:extract_body!)
         seed.send(:extract_fields!)
         expect(seed.frontmatter[:image]).to eq('4Zxm0bwR9eWSiuw442WAqS')
-        expect(seed.frontmatter[:author]).to eq('2VBUQyLmh22eacKWw08E4o')
+        expect(seed.frontmatter[:author]).to eq('gHpeahicxiSI8UWMWookw')
         expect(seed.frontmatter[:tags]).to eq(%w{luZPICyHVQUYQYSAa6Imu 1JWjoImLpWAeWMCWI2WOaM 31xMlxGaBWKw0aYK2ESgQA})
       end
     end
@@ -144,7 +144,7 @@ describe Seed do
   describe '#raw_frontmatter' do
     it 'extracts the text that will be processed as frontmatter' do
       fm = seed.send(:raw_frontmatter)
-      expect(fm).to eq("---\n_content_type: article\ntitle: Article Title\nslug: article-slug\nimage: 4Zxm0bwR9eWSiuw442WAqS\nauthor: 2VBUQyLmh22eacKWw08E4o\ncategory: 5Gti0XC6Tm0moa4WMYM0cw\npublished_at: 2019-01-01\ntags:\n  - luZPICyHVQUYQYSAa6Imu\n  - 1JWjoImLpWAeWMCWI2WOaM\n  - 31xMlxGaBWKw0aYK2ESgQA\n---")
+      expect(fm).to eq("---\n_content_type: article\ntitle: Article Title\nslug: article-slug\nimage: 4Zxm0bwR9eWSiuw442WAqS\nauthor: gHpeahicxiSI8UWMWookw\ncategory: 5Gti0XC6Tm0moa4WMYM0cw\npublished_at: 2019-01-01\ntags:\n  - luZPICyHVQUYQYSAa6Imu\n  - 1JWjoImLpWAeWMCWI2WOaM\n  - 31xMlxGaBWKw0aYK2ESgQA\n---")
     end
   end
 
