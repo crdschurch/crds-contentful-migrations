@@ -1,0 +1,973 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.contentful.com/spaces/y3a9myzsdjan/environments/tmp-seed-data
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/2.6.0; platform ruby/2.4.3; os macOS/18;
+      Authorization:
+      - Bearer CFPAT-0d84f2b13a99c57711ba91ea31f308ff9436238effb99977fbc0e486c1c88a64
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cache-Control:
+      - max-age=0
+      Cf-Organization-Id:
+      - 0OmlJ4GpHFvEXjP4bQUdiW
+      Cf-Space-Id:
+      - y3a9myzsdjan
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Contentful-Api:
+      - cma
+      Date:
+      - Fri, 25 Jan 2019 20:28:39 GMT
+      Etag:
+      - W/"492c9c67669b3fa30d12ab68de398c88"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Ratelimit-Hour-Limit:
+      - '36000'
+      X-Contentful-Ratelimit-Hour-Remaining:
+      - '35999'
+      X-Contentful-Ratelimit-Reset:
+      - '0'
+      X-Contentful-Ratelimit-Second-Limit:
+      - '10'
+      X-Contentful-Ratelimit-Second-Remaining:
+      - '9'
+      X-Contentful-Request-Id:
+      - df153b2d07d381feabb7795e2d7b001a
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - ALLOWALL
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '702'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_481_673446=FSpbGFZayGlwJbSQTtusBndxS1wAAAAA8/FOVpkq0GwbwCJf+YDLyA==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=HM3sHe0quRk8EedJ6lKYhQAAAACHsMHPdz2ZP41wdsQqPZ0Q; path=/; Domain=.contentful.com
+      - visid_incap_673446=uGbnJdlfQI+Qdjw/ZA+vVHdxS1wAAAAAQUIPAAAAAAD84aRPB0fsUm2gcfb3DMAN;
+        expires=Sat, 25 Jan 2020 09:32:23 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 3-165742912-165742924 NNNN CT(0 0 0) RT(1548448119089 68) q(0 0 0 -1) r(0
+        0) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |+
+        {
+          "name":"tmp-seed-data",
+          "sys":{
+            "type":"Environment",
+            "id":"tmp-seed-data",
+            "version":6,
+            "space":{
+              "sys":{
+                "type":"Link",
+                "linkType":"Space",
+                "id":"y3a9myzsdjan"
+              }
+            },
+            "status":{
+              "sys":{
+                "type":"Link",
+                "linkType":"Status",
+                "id":"ready"
+              }
+            },
+            "createdBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "createdAt":"2019-01-25T17:35:22Z",
+            "updatedBy":{
+              "sys":{
+                "type":"Link",
+                "linkType":"User",
+                "id":"7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "updatedAt":"2019-01-25T17:36:27Z"
+          }
+        }
+
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 20:28:39 GMT
+- request:
+    method: get
+    uri: https://api.contentful.com/spaces/y3a9myzsdjan/environments/tmp-seed-data/content_types/location
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/2.6.0; platform ruby/2.4.3; os macOS/18;
+      Authorization:
+      - Bearer CFPAT-0d84f2b13a99c57711ba91ea31f308ff9436238effb99977fbc0e486c1c88a64
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cf-Space-Id:
+      - y3a9myzsdjan
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Contentful-Api:
+      - cma
+      Date:
+      - Fri, 25 Jan 2019 20:28:39 GMT
+      Etag:
+      - '"5e6d0673b14bc9f350176a6aab2e002d"'
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Ratelimit-Hour-Limit:
+      - '36000'
+      X-Contentful-Ratelimit-Hour-Remaining:
+      - '35998'
+      X-Contentful-Ratelimit-Reset:
+      - '0'
+      X-Contentful-Ratelimit-Second-Limit:
+      - '10'
+      X-Contentful-Ratelimit-Second-Remaining:
+      - '8'
+      X-Contentful-Request-Id:
+      - 63125a275a19f4ec35339cc2deae0bb4
+      Content-Length:
+      - '6365'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_481_673446=EoMuPA7/zXn4JbSQTtusBndxS1wAAAAAyIbr3qU56XuFMwdiCNRUkw==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=QaMtLB/Q9GOS5Yap6lKYhQAAAADddHyB93XoGKFdUMEkSBbk; path=/; Domain=.contentful.com
+      - visid_incap_673446=a/hf3cTEQKq5Qb5yQWjilHdxS1wAAAAAQUIPAAAAAABbQxruba4oZbjAwiqXmYhc;
+        expires=Sat, 25 Jan 2020 09:32:23 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 8-174635437-174635449 NNNN CT(0 0 0) RT(1548448119247 67) q(0 0 0 -1) r(0
+        0) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "y3a9myzsdjan"
+              }
+            },
+            "id": "location",
+            "type": "ContentType",
+            "createdAt": "2018-08-23T14:16:48.956Z",
+            "updatedAt": "2019-01-23T20:13:41.717Z",
+            "environment": {
+              "sys": {
+                "id": "tmp-seed-data",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "createdBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "updatedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "publishedCounter": 5,
+            "version": 34,
+            "publishedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "publishedVersion": 33,
+            "firstPublishedAt": "2018-08-23T14:16:54.419Z",
+            "publishedAt": "2019-01-23T20:13:41.717Z"
+          },
+          "displayField": "name",
+          "name": "Location",
+          "description": "Models the attributes of a Crossroads community site",
+          "fields": [
+            {
+              "id": "name",
+              "name": "Name",
+              "type": "Symbol",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "slug",
+              "name": "Slug",
+              "type": "Symbol",
+              "localized": false,
+              "required": true,
+              "validations": [
+                {
+                  "unique": true
+                }
+              ],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "image",
+              "name": "Image",
+              "type": "Link",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "bg_image",
+              "name": "Background Image",
+              "type": "Link",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "description",
+              "name": "Description",
+              "type": "Text",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "service_times",
+              "name": "Service Times",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "address",
+              "name": "Address",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "additional_info",
+              "name": "Additional Info",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "map_url",
+              "name": "Map Url",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "virtual_tour_url",
+              "name": "Virtual Tour Url",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "come_as_you_are_image",
+              "name": "Come As You Are Image",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "community_pastor_image",
+              "name": "Community Pastor Image",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "community_pastor_name",
+              "name": "Community Pastor Name",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "community_pastor_bio",
+              "name": "Community Pastor Bio",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "spotlight_image",
+              "name": "Spotlight Image",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "spotlight_title",
+              "name": "Spotlight Title",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "spotlight_text",
+              "name": "Spotlight Text",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "kids_club_hours",
+              "name": "Kid's Club Hours",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "student_ministry_hours",
+              "name": "Student Ministry Hours",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "alternative_serve_url",
+              "name": "Alternative Serve Url",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "hubspot_form_id",
+              "name": "Hubspot Form ID",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [
+                {
+                  "unique": true
+                }
+              ],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "meta",
+              "name": "Meta",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [
+                {
+                  "linkContentType": [
+                    "meta"
+                  ]
+                }
+              ],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Entry"
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 20:28:39 GMT
+- request:
+    method: get
+    uri: https://api.contentful.com/spaces/y3a9myzsdjan/environments/tmp-seed-data/entries/Y5BXL5M8WA6mQwu0gEwsq
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/2.6.0; platform ruby/2.4.3; os macOS/18;
+      Authorization:
+      - Bearer CFPAT-0d84f2b13a99c57711ba91ea31f308ff9436238effb99977fbc0e486c1c88a64
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cf-Space-Id:
+      - y3a9myzsdjan
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Contentful-Api:
+      - cma
+      Date:
+      - Fri, 25 Jan 2019 20:28:39 GMT
+      Etag:
+      - '"977f9415624a6a0a194ac36ae3c2ec07"'
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Ratelimit-Hour-Limit:
+      - '36000'
+      X-Contentful-Ratelimit-Hour-Remaining:
+      - '35997'
+      X-Contentful-Ratelimit-Reset:
+      - '0'
+      X-Contentful-Ratelimit-Second-Limit:
+      - '10'
+      X-Contentful-Ratelimit-Second-Remaining:
+      - '7'
+      X-Contentful-Request-Id:
+      - '016897bbcde862f3a45df8506ccee4e1'
+      Content-Length:
+      - '3320'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_481_673446=j8HZEF884GJ4JrSQTtusBndxS1wAAAAACAgOK150DP/tDPGgBZUZow==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=JeItGxwclh4xGh8M6lKYhQAAAAD/qOsUxudSHuUq/pLLJ2Qd; path=/; Domain=.contentful.com
+      - visid_incap_673446=u1pn0LPtQveJ1pJJ0WLsFndxS1wAAAAAQUIPAAAAAAB3Ltqof15g5BD3pDVY9NR+;
+        expires=Sat, 25 Jan 2020 09:32:23 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 3-165742978-165742986 NNNN CT(1 5 0) RT(1548448119431 68) q(0 0 1 -1) r(1
+        1) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJzeXMiOiB7CiAgICAic3BhY2UiOiB7CiAgICAgICJzeXMiOiB7CiAgICAgICAgInR5cGUiOiAiTGluayIsCiAgICAgICAgImxpbmtUeXBlIjogIlNwYWNlIiwKICAgICAgICAiaWQiOiAieTNhOW15enNkamFuIgogICAgICB9CiAgICB9LAogICAgImlkIjogIlk1QlhMNU04V0E2bVF3dTBnRXdzcSIsCiAgICAidHlwZSI6ICJFbnRyeSIsCiAgICAiY3JlYXRlZEF0IjogIjIwMTgtMDgtMjlUMTU6NTI6MjEuOTU3WiIsCiAgICAidXBkYXRlZEF0IjogIjIwMTktMDEtMjVUMjA6MTM6MTQuNzQyWiIsCiAgICAiZW52aXJvbm1lbnQiOiB7CiAgICAgICJzeXMiOiB7CiAgICAgICAgImlkIjogInRtcC1zZWVkLWRhdGEiLAogICAgICAgICJ0eXBlIjogIkxpbmsiLAogICAgICAgICJsaW5rVHlwZSI6ICJFbnZpcm9ubWVudCIKICAgICAgfQogICAgfSwKICAgICJjcmVhdGVkQnkiOiB7CiAgICAgICJzeXMiOiB7CiAgICAgICAgInR5cGUiOiAiTGluayIsCiAgICAgICAgImxpbmtUeXBlIjogIlVzZXIiLAogICAgICAgICJpZCI6ICI3bXBWVHkxNllUV1RrVm9FdHhnZkZlIgogICAgICB9CiAgICB9LAogICAgInVwZGF0ZWRCeSI6IHsKICAgICAgInN5cyI6IHsKICAgICAgICAidHlwZSI6ICJMaW5rIiwKICAgICAgICAibGlua1R5cGUiOiAiVXNlciIsCiAgICAgICAgImlkIjogIjdtcFZUeTE2WVRXVGtWb0V0eGdmRmUiCiAgICAgIH0KICAgIH0sCiAgICAicHVibGlzaGVkQ291bnRlciI6IDYsCiAgICAidmVyc2lvbiI6IDQzLAogICAgInB1Ymxpc2hlZEJ5IjogewogICAgICAic3lzIjogewogICAgICAgICJ0eXBlIjogIkxpbmsiLAogICAgICAgICJsaW5rVHlwZSI6ICJVc2VyIiwKICAgICAgICAiaWQiOiAiN21wVlR5MTZZVFdUa1ZvRXR4Z2ZGZSIKICAgICAgfQogICAgfSwKICAgICJwdWJsaXNoZWRWZXJzaW9uIjogNDEsCiAgICAiZmlyc3RQdWJsaXNoZWRBdCI6ICIyMDE4LTA4LTI5VDE1OjU5OjE4Ljk1MloiLAogICAgInB1Ymxpc2hlZEF0IjogIjIwMTktMDEtMjVUMjA6MTM6MTQuNDE0WiIsCiAgICAiY29udGVudFR5cGUiOiB7CiAgICAgICJzeXMiOiB7CiAgICAgICAgInR5cGUiOiAiTGluayIsCiAgICAgICAgImxpbmtUeXBlIjogIkNvbnRlbnRUeXBlIiwKICAgICAgICAiaWQiOiAibG9jYXRpb24iCiAgICAgIH0KICAgIH0KICB9LAogICJmaWVsZHMiOiB7CiAgICAibmFtZSI6IHsKICAgICAgImVuLVVTIjogIkNsZXZlbGFuZCBbTkVXXSIKICAgIH0sCiAgICAic2x1ZyI6IHsKICAgICAgImVuLVVTIjogImNsZXZlbGFuZC1uZXciCiAgICB9LAogICAgImltYWdlIjogewogICAgICAiZW4tVVMiOiB7CiAgICAgICAgInN5cyI6IHsKICAgICAgICAgICJ0eXBlIjogIkxpbmsiLAogICAgICAgICAgImxpbmtUeXBlIjogIkFzc2V0IiwKICAgICAgICAgICJpZCI6ICI0WEpkNUdpNlVVd0tJYWVHS2F5Nk9BIgogICAgICAgIH0KICAgICAgfQogICAgfSwKICAgICJiZ19pbWFnZSI6IHsKICAgICAgImVuLVVTIjogewogICAgICAgICJzeXMiOiB7CiAgICAgICAgICAidHlwZSI6ICJMaW5rIiwKICAgICAgICAgICJsaW5rVHlwZSI6ICJBc3NldCIsCiAgICAgICAgICAiaWQiOiAiNFhKZDVHaTZVVXdLSWFlR0theTZPQSIKICAgICAgICB9CiAgICAgIH0KICAgIH0sCiAgICAiZGVzY3JpcHRpb24iOiB7CiAgICAgICJlbi1VUyI6ICJBYm91dCAyMCB5ZWFycyBhZ28sIHdlIHN0YXJ0ZWQgYSBjaHVyY2ggZm9yIG91ciBmcmllbmRzIHdobyBkaWRu4oCZdCBsaWtlIGNodXJjaC4gV2Ugd2FudGVkIGEgcGxhY2Ugd2hlcmUgeW91IGNhbiBjb21lIGFzIHlvdSBhcmUsIGFuZCB5b3UgY291bGQgYWN0dWFsbHkgbG9vayBmb3J3YXJkIHRvIGJlaW5nIHRoZXJl4oCUd2hldGhlciB5b3XigJlyZSBxdWVzdGlvbmluZyBpZiBHb2QgZXZlbiBleGlzdHMsIG9yIHlvdeKAmXJlIGEgY29tbWl0dGVkIENocmlzdC1mb2xsb3dlci4gV2XigJl2ZSBiZWVuIGluIENpbmNpbm5hdGkgZm9yIGFsbCB0aGF0IHRpbWUsIGJ1dCB0aHJvdWdoIHRoaXMgY3JhenkgdGhpbmcgY2FsbGVkIENyb3Nzcm9hZHMgQW55d2hlcmUsIHdl4oCZcmUgcmVhY2hpbmcgY2l0aWVzIGFsbCBvdmVyIHRoZSBuYXRpb24gYW5kIHRoZSB3b3JsZC4iCiAgICB9LAogICAgImFkZHJlc3MiOiB7CiAgICAgICJlbi1VUyI6ICI2NzUgQWxwaGEgRHJpdmUsIFN1aXRlIEUgIFxuICBcbkhpZ2hsYW5kIEhlaWdodHMsIE9IIDQ0MTQzIgogICAgfSwKICAgICJhZGRpdGlvbmFsX2luZm8iOiB7CiAgICAgICJlbi1VUyI6ICIjIyMgU3RheSBpbiB0aGUgbG9vcFxuXG5Ob3cgd2UgYXJlIG1lZXRpbmcgaW4gQ2xldmVsYW5kIGFuZCB3ZSBhcmUgYWx3YXlzIHVwIHRvIHNvbWV0aGluZyBmdW4uIFNpZ24gdXAgdG8gZ2V0IHVwZGF0ZXMgZnJvbSBvdXIgdGVhbSwgZmluZCBvdXQgd2hhdCdzIGdvaW5nIG9uLCBhbmQgZ2V0IGludm9sdmVkISBXZSB3b24ndCBzcGFtIHlvdSwgd2UgcHJvbWlzZS5cblxuW1NpZ24gdXBdKGh0dHBzOi8vZG9jcy5nb29nbGUuY29tL2Zvcm1zL2QvZS8xRkFJcFFMU2N4TE9OOUsyVmJ1SEV3bmFibUZYXzMydEF4US10WjNndDAwUmkwV0dsTl9HUjAzZy92aWV3Zm9ybSkiCiAgICB9LAogICAgIm1hcF91cmwiOiB7CiAgICAgICJlbi1VUyI6ICJodHRwczovL3d3dy5nb29nbGUuY29tL21hcHMvcGxhY2UvTGF1bmNoSG91c2UvQDQxLjU0NTcxMTYsLTgxLjQ1Mjg1NzcsMTV6L2RhdGE9ITRtMiEzbTEhMXMweDA6MHg5MjFjNTRkYmI3YTQ0YmYzP3NhPVgmdmVkPTBhaFVLRXdqeXBZZktsYzdZQWhWTnVGTUtIVXdzQ0JFUV9CSUloUUV3Q2ciCiAgICB9LAogICAgImNvbWVfYXNfeW91X2FyZV9pbWFnZSI6IHsKICAgICAgImVuLVVTIjogewogICAgICAgICJzeXMiOiB7CiAgICAgICAgICAidHlwZSI6ICJMaW5rIiwKICAgICAgICAgICJsaW5rVHlwZSI6ICJBc3NldCIsCiAgICAgICAgICAiaWQiOiAiNVFOdDM1Z21hV0tRd2lhb3VJdTJ3TSIKICAgICAgICB9CiAgICAgIH0KICAgIH0sCiAgICAic3BvdGxpZ2h0X3RpdGxlIjogewogICAgICAiZW4tVVMiOiAiRHJvcCBVcyBBIExpbmUiCiAgICB9LAogICAgInNwb3RsaWdodF90ZXh0IjogewogICAgICAiZW4tVVMiOiAiSGF2ZSBxdWVzdGlvbnM/IFdlJ3ZlIGdvdCBhbnN3ZXJzLiBOZWVkIG1vcmUgaW5mbyBvciB3YW50IHRvIGdldCBjb25uZWN0ZWQ/IFJlYWNoIG91dCwgbGV0J3MgdGFsay4gV2UncmUgaGlwLiBHbyBvbi4gVGVzdCB1cyBmYW0uIFRleHQgdXMgYXQgNTEzLTQwMi0wMjg5IG9yIGVtYWlsIHVzIGF0IFtjbGV2ZWxhbmRAY3Jvc3Nyb2Fkcy5uZXRdKG1haWx0bzpjbGV2ZWxhbmRAY3Jvc3Nyb2Fkcy5uZXQpIgogICAgfQogIH0KfQo=
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 20:28:39 GMT
+- request:
+    method: get
+    uri: https://api.contentful.com/spaces/y3a9myzsdjan/environments/tmp-seed-data/content_types/location
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Contentful-User-Agent:
+      - sdk contentful-management.rb/2.6.0; platform ruby/2.4.3; os macOS/18;
+      Authorization:
+      - Bearer CFPAT-0d84f2b13a99c57711ba91ea31f308ff9436238effb99977fbc0e486c1c88a64
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Connection:
+      - close
+      Host:
+      - api.contentful.com
+      User-Agent:
+      - http.rb/2.2.2
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - DELETE,GET,HEAD,POST,PUT,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '1728000'
+      Cf-Space-Id:
+      - y3a9myzsdjan
+      Content-Type:
+      - application/vnd.contentful.management.v1+json
+      Contentful-Api:
+      - cma
+      Date:
+      - Fri, 25 Jan 2019 20:28:39 GMT
+      Etag:
+      - '"5e6d0673b14bc9f350176a6aab2e002d"'
+      Server:
+      - Contentful
+      Strict-Transport-Security:
+      - max-age=15768000
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Ratelimit-Hour-Limit:
+      - '36000'
+      X-Contentful-Ratelimit-Hour-Remaining:
+      - '35996'
+      X-Contentful-Ratelimit-Reset:
+      - '0'
+      X-Contentful-Ratelimit-Second-Limit:
+      - '10'
+      X-Contentful-Ratelimit-Second-Remaining:
+      - '6'
+      X-Contentful-Request-Id:
+      - b3e1225829ddbd67d51173257f8abc31
+      Content-Length:
+      - '6365'
+      Connection:
+      - Close
+      Set-Cookie:
+      - incap_ses_481_673446=IQIVPoqDbzwOJ7SQTtusBndxS1wAAAAAuGu4zB7Cd/YVN65TcV4EPg==;
+        path=/; Domain=.contentful.com
+      - nlbi_673446=tnKoaC/RAHdUZ27P6lKYhQAAAACjcm3fMP/iohCrdZWsq2Uk; path=/; Domain=.contentful.com
+      - visid_incap_673446=J0RyWgusTP2vfFoQvmrp5XdxS1wAAAAAQUIPAAAAAAAs72vD5t2vTov62W6gZv31;
+        expires=Sat, 25 Jan 2020 09:32:23 GMT; path=/; Domain=.contentful.com
+      X-Iinfo:
+      - 10-253420589-253420599 NNNN CT(0 0 0) RT(1548448119635 72) q(0 0 0 -1) r(1
+        1) U5
+      X-Cdn:
+      - Incapsula
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "y3a9myzsdjan"
+              }
+            },
+            "id": "location",
+            "type": "ContentType",
+            "createdAt": "2018-08-23T14:16:48.956Z",
+            "updatedAt": "2019-01-23T20:13:41.717Z",
+            "environment": {
+              "sys": {
+                "id": "tmp-seed-data",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "createdBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "updatedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "publishedCounter": 5,
+            "version": 34,
+            "publishedBy": {
+              "sys": {
+                "type": "Link",
+                "linkType": "User",
+                "id": "7mpVTy16YTWTkVoEtxgfFe"
+              }
+            },
+            "publishedVersion": 33,
+            "firstPublishedAt": "2018-08-23T14:16:54.419Z",
+            "publishedAt": "2019-01-23T20:13:41.717Z"
+          },
+          "displayField": "name",
+          "name": "Location",
+          "description": "Models the attributes of a Crossroads community site",
+          "fields": [
+            {
+              "id": "name",
+              "name": "Name",
+              "type": "Symbol",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "slug",
+              "name": "Slug",
+              "type": "Symbol",
+              "localized": false,
+              "required": true,
+              "validations": [
+                {
+                  "unique": true
+                }
+              ],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "image",
+              "name": "Image",
+              "type": "Link",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "bg_image",
+              "name": "Background Image",
+              "type": "Link",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "description",
+              "name": "Description",
+              "type": "Text",
+              "localized": false,
+              "required": true,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "service_times",
+              "name": "Service Times",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "address",
+              "name": "Address",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "additional_info",
+              "name": "Additional Info",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "map_url",
+              "name": "Map Url",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "virtual_tour_url",
+              "name": "Virtual Tour Url",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "come_as_you_are_image",
+              "name": "Come As You Are Image",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "community_pastor_image",
+              "name": "Community Pastor Image",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "community_pastor_name",
+              "name": "Community Pastor Name",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "community_pastor_bio",
+              "name": "Community Pastor Bio",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "spotlight_image",
+              "name": "Spotlight Image",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Asset"
+            },
+            {
+              "id": "spotlight_title",
+              "name": "Spotlight Title",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "spotlight_text",
+              "name": "Spotlight Text",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "kids_club_hours",
+              "name": "Kid's Club Hours",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "student_ministry_hours",
+              "name": "Student Ministry Hours",
+              "type": "Text",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "alternative_serve_url",
+              "name": "Alternative Serve Url",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "hubspot_form_id",
+              "name": "Hubspot Form ID",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [
+                {
+                  "unique": true
+                }
+              ],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+              "id": "meta",
+              "name": "Meta",
+              "type": "Link",
+              "localized": false,
+              "required": false,
+              "validations": [
+                {
+                  "linkContentType": [
+                    "meta"
+                  ]
+                }
+              ],
+              "disabled": false,
+              "omitted": false,
+              "linkType": "Entry"
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 20:28:39 GMT
+recorded_with: VCR 4.0.0

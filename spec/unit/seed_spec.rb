@@ -2,13 +2,14 @@ require 'seeder'
 
 describe Seed do
 
-  let(:seed_file_path) { File.expand_path('../support/basic-seed.md', __dir__) }
-  let(:seed) { Seed.new(seed_file_path) }
+  let(:new_seed_path) { File.expand_path('../support/basic-seed.md', __dir__) }
+  let(:updated_seed_path) { File.expand_path('../support/update-location.md', __dir__) }
+  let(:seed) { Seed.new(new_seed_path) }
 
   describe '#intialize' do
     it 'sets appropriate variables' do
-      expect(seed.instance_variable_get("@file_path")).to eq(seed_file_path)
-      expect(seed.raw).to eq(File.read(seed_file_path))
+      expect(seed.instance_variable_get("@file_path")).to eq(new_seed_path)
+      expect(seed.raw).to eq(File.read(new_seed_path))
     end
   end
 
@@ -22,14 +23,43 @@ describe Seed do
     end
   end
 
-  describe '#create_entry!' do
+  describe '#init_entry!' do
     it 'raises an error when attempting to create without parsing the fields' do
-      expect { seed.create_entry! }.to raise_error(RuntimeError)
+      expect { seed.init_entry! }.to raise_error(RuntimeError)
+    end
+    it 'intializes an entry if the fields have been parsed first' do
+      VCR.use_cassette('init_entry') do
+        seed.parse_file!
+        seed.init_entry!
+        expect(seed.entry.title).to eq(seed.fields[:title])
+        expect(seed.entry.slug).to eq(seed.fields[:slug])
+        expect(seed.entry.body).to eq(seed.fields[:body])
+        expect(seed.entry.image.id).to eq(seed.frontmatter[:image])
+        expect(seed.entry.author.id).to eq(seed.frontmatter[:author])
+        expect(seed.entry.tags.collect { |t| t.id }).to eq(seed.frontmatter[:tags])
+      end
+    end
+    it 'finds an existing entry and overwrites new fields' do
+      seed = Seed.new(updated_seed_path)
+      VCR.use_cassette('init_update_entry') do
+        seed.parse_file!
+        seed.init_entry!
+        expect(seed.entry.id).to eq('Y5BXL5M8WA6mQwu0gEwsq')
+        expect(seed.entry.name).to eq('Cleveland [NEW]')
+        expect(seed.entry.spotlight_title).to eq('Drop Us A Line')
+      end
+    end
+  end
+
+  describe '#save_entry!' do
+    it 'raises an error when attempting to create without initializing an entry' do
+      expect { seed.save_entry! }.to raise_error(RuntimeError)
     end
     it 'creates an entry if the fields have been parsed first' do
-      VCR.use_cassette('create_seed') do
+      VCR.use_cassette('save_entry') do
         seed.parse_file!
-        seed.create_entry!
+        seed.init_entry!
+        seed.save_entry!
         expect(seed.entry.title).to eq(seed.fields[:title])
         expect(seed.entry.slug).to eq(seed.fields[:slug])
         expect(seed.entry.body).to eq(seed.fields[:body])
@@ -45,10 +75,11 @@ describe Seed do
       expect { seed.publish_entry! }.to raise_error(RuntimeError)
     end
     it 'publishes a valid entry' do
-      VCR.use_cassette('publish_seed') do
+      VCR.use_cassette('publish_entry') do
         seed.parse_file!
         seed.fields[:slug] = SecureRandom.hex(24)
-        seed.create_entry!
+        seed.init_entry!
+        seed.save_entry!
         expect(seed.entry.published?).to eq(false)
         seed.publish_entry!
         expect(seed.entry.published?).to eq(true)

@@ -9,9 +9,11 @@ class Seeder
   #
   def self.seed!(options = {})
     Dir.glob('data/**/*').each do |file|
+      next unless File.file?(file)
       seed = Seed.new(file)
       seed.parse_file!
-      seed.create_entry!
+      seed.init_entry!
+      seed.save_entry!
       seed.publish_entry!
       STDOUT.write('.')
     end
@@ -41,17 +43,26 @@ class Seed
     self
   end
 
-  # Create an entry in Contentful and store a reference to it.
+  # Set a reference to a Contentful entry object with the current fields.
   #
-  def create_entry!
-    raise "Can't create an entry without fields." if fields.blank?
-    self.entry = content_type.entries.create(fields)
+  def init_entry!
+    raise "Can't initialize an entry without fields." if fields.blank?
+    self.entry = try(:_id) ? contentful.entries.find(_id) : content_type.entries.new
+    fields.map { |k, v| entry.send("#{k}=", v) }
+    entry
+  end
+
+  # Save the entry in Contentful.
+  #
+  def save_entry!
+    raise "Must first initialize the entry." if entry.blank?
+    self.entry = entry.save
   end
 
   # Publish the Contentful entry.
   #
   def publish_entry!
-    raise "Can't publish without creating an entry." if entry.blank?
+    raise "Can't publish without initializing an entry." if entry.blank?
     self.entry = entry.publish
   end
 
