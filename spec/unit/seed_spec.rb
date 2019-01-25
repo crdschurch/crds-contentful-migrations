@@ -23,49 +23,30 @@ describe Seed do
     end
   end
 
-  describe '#init_entry!' do
+  describe '#create_or_update_entry!' do
     it 'raises an error when attempting to create without parsing the fields' do
-      expect { seed.init_entry! }.to raise_error(RuntimeError)
-    end
-    it 'intializes an entry if the fields have been parsed first' do
-      VCR.use_cassette('init_entry') do
-        seed.parse_file!
-        seed.init_entry!
-        expect(seed.entry.title).to eq(seed.fields[:title])
-        expect(seed.entry.slug).to eq(seed.fields[:slug])
-        expect(seed.entry.body).to eq(seed.fields[:body])
-        expect(seed.entry.image.id).to eq(seed.frontmatter[:image])
-        expect(seed.entry.author.id).to eq(seed.frontmatter[:author])
-        expect(seed.entry.tags.collect { |t| t.id }).to eq(seed.frontmatter[:tags])
-      end
-    end
-    it 'finds an existing entry and overwrites new fields' do
-      seed = Seed.new(updated_seed_path)
-      VCR.use_cassette('init_update_entry') do
-        seed.parse_file!
-        seed.init_entry!
-        expect(seed.entry.id).to eq('Y5BXL5M8WA6mQwu0gEwsq')
-        expect(seed.entry.name).to eq('Cleveland [NEW]')
-        expect(seed.entry.spotlight_title).to eq('Drop Us A Line')
-      end
-    end
-  end
-
-  describe '#save_entry!' do
-    it 'raises an error when attempting to create without initializing an entry' do
-      expect { seed.save_entry! }.to raise_error(RuntimeError)
+      expect { seed.create_or_update_entry! }.to raise_error(RuntimeError)
     end
     it 'creates an entry if the fields have been parsed first' do
-      VCR.use_cassette('save_entry') do
+      VCR.use_cassette('create_entry') do
         seed.parse_file!
-        seed.init_entry!
-        seed.save_entry!
+        seed.create_or_update_entry!
         expect(seed.entry.title).to eq(seed.fields[:title])
         expect(seed.entry.slug).to eq(seed.fields[:slug])
         expect(seed.entry.body).to eq(seed.fields[:body])
         expect(seed.entry.image.dig('sys', 'id')).to eq(seed.frontmatter[:image])
         expect(seed.entry.author.dig('sys', 'id')).to eq(seed.frontmatter[:author])
         expect(seed.entry.tags.collect { |t| t.dig('sys', 'id') }).to eq(seed.frontmatter[:tags])
+      end
+    end
+    it 'finds an existing entry and overwrites new fields' do
+      seed = Seed.new(updated_seed_path)
+      VCR.use_cassette('update_entry') do
+        seed.parse_file!
+        seed.create_or_update_entry!
+        expect(seed.entry.id).to eq('Y5BXL5M8WA6mQwu0gEwsq')
+        expect(seed.entry.name).to eq('Cleveland [NEW]')
+        expect(seed.entry.spotlight_title).to eq('Drop Us A Line')
       end
     end
   end
@@ -78,8 +59,7 @@ describe Seed do
       VCR.use_cassette('publish_entry') do
         seed.parse_file!
         seed.fields[:slug] = SecureRandom.hex(24)
-        seed.init_entry!
-        seed.save_entry!
+        seed.create_or_update_entry!
         expect(seed.entry.published?).to eq(false)
         seed.publish_entry!
         expect(seed.entry.published?).to eq(true)

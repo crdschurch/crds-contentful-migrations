@@ -47,7 +47,7 @@ http_interactions:
       Contentful-Api:
       - cma
       Date:
-      - Fri, 25 Jan 2019 20:28:18 GMT
+      - Fri, 25 Jan 2019 21:32:53 GMT
       Etag:
       - W/"492c9c67669b3fa30d12ab68de398c88"
       Referrer-Policy:
@@ -61,15 +61,15 @@ http_interactions:
       X-Contentful-Ratelimit-Hour-Limit:
       - '36000'
       X-Contentful-Ratelimit-Hour-Remaining:
-      - '35997'
+      - '35999'
       X-Contentful-Ratelimit-Reset:
       - '0'
       X-Contentful-Ratelimit-Second-Limit:
       - '10'
       X-Contentful-Ratelimit-Second-Remaining:
-      - '7'
+      - '9'
       X-Contentful-Request-Id:
-      - f1ee3839551546db9dd977a890162bb8
+      - 0f9ec52d43bd11c701277d40e2e4f518
       X-Download-Options:
       - noopen
       X-Frame-Options:
@@ -83,14 +83,14 @@ http_interactions:
       Connection:
       - Close
       Set-Cookie:
-      - incap_ses_481_673446=GCqubz28TjPp6bOQTtusBmJxS1wAAAAAEe4mJ8qYA8H49EXgteB/Mg==;
+      - incap_ses_481_673446=2JMBYTKJaASnjt2QTtusBoSAS1wAAAAAyDU5xDSGrNqFgi2oDrQfxw==;
         path=/; Domain=.contentful.com
-      - nlbi_673446=b3jcPaSWbEShFW/s6lKYhQAAAAADEOIofEjTBnobiWTM/K6X; path=/; Domain=.contentful.com
-      - visid_incap_673446=hCd/vh2NRFyXbC0OwbCycmJxS1wAAAAAQUIPAAAAAADCAdeHehg0hNrM7VovzpGV;
-        expires=Sat, 25 Jan 2020 09:32:29 GMT; path=/; Domain=.contentful.com
+      - nlbi_673446=Cr36LZTt8CD+w2zH6lKYhQAAAAAWPKZ6h53bgmeSMpkO72wn; path=/; Domain=.contentful.com
+      - visid_incap_673446=XGKMN+frS1CYIqGhfBkdqoSAS1wAAAAAQUIPAAAAAAC+/UDnRkdlMUnIQt+JTzM2;
+        expires=Sat, 25 Jan 2020 09:32:23 GMT; path=/; Domain=.contentful.com
       X-Iinfo:
-      - 0-80856541-80856551 NNNN CT(0 0 0) RT(1548448098014 52) q(0 0 0 -1) r(0 0)
-        U5
+      - 10-254392868-254392877 NNNN CT(0 0 0) RT(1548451972867 69) q(0 0 0 -1) r(0
+        0) U5
       X-Cdn:
       - Incapsula
     body:
@@ -136,7 +136,7 @@ http_interactions:
         }
 
     http_version: 
-  recorded_at: Fri, 25 Jan 2019 20:28:18 GMT
+  recorded_at: Fri, 25 Jan 2019 21:32:53 GMT
 - request:
     method: get
     uri: https://api.contentful.com/spaces/y3a9myzsdjan/environments/tmp-seed-data/content_types/article
@@ -178,7 +178,7 @@ http_interactions:
       Contentful-Api:
       - cma
       Date:
-      - Fri, 25 Jan 2019 20:28:18 GMT
+      - Fri, 25 Jan 2019 21:32:53 GMT
       Etag:
       - '"fd742b78bc7f74e750e9e6bfaf073ce7"'
       Server:
@@ -190,27 +190,27 @@ http_interactions:
       X-Contentful-Ratelimit-Hour-Limit:
       - '36000'
       X-Contentful-Ratelimit-Hour-Remaining:
-      - '35995'
+      - '35998'
       X-Contentful-Ratelimit-Reset:
       - '0'
       X-Contentful-Ratelimit-Second-Limit:
       - '10'
       X-Contentful-Ratelimit-Second-Remaining:
-      - '5'
+      - '8'
       X-Contentful-Request-Id:
-      - 03d247bae04de441979edde414b630f6
+      - 786764f02df28a29d54190d03a548de2
       Content-Length:
       - '4624'
       Connection:
       - Close
       Set-Cookie:
-      - incap_ses_481_673446=zIcDdu0HUw1j6rOQTtusBmJxS1wAAAAAGZWD/Z90bNo/X07+G2mp6Q==;
+      - incap_ses_481_673446=79TRO8n3Tg4qj92QTtusBoWAS1wAAAAAsY8M9X2Lc0oQ1YEdosQpDw==;
         path=/; Domain=.contentful.com
-      - nlbi_673446=2ZLBOjtNF0qenZEC6lKYhQAAAAA4LMZtY19JTo+OmIg/80y1; path=/; Domain=.contentful.com
-      - visid_incap_673446=nSdJW6ykSsiZ1onVRNfYLWJxS1wAAAAAQUIPAAAAAACriu+PQVxh81drPZPDgVJo;
+      - nlbi_673446=uiE5DaSI4R/CwL0W6lKYhQAAAABGEjvATuaYjqg88M2C96QZ; path=/; Domain=.contentful.com
+      - visid_incap_673446=3qXKQklVStaqDo+sJ3XWKoWAS1wAAAAAQUIPAAAAAABcR39q0LmJKpXoJy2OSYiP;
         expires=Sat, 25 Jan 2020 09:32:23 GMT; path=/; Domain=.contentful.com
       X-Iinfo:
-      - 10-253414843-253414858 NNNN CT(0 0 0) RT(1548448098138 76) q(0 0 0 -1) r(0
+      - 5-221454019-221454035 NNNN CT(0 0 0) RT(1548451973049 78) q(0 0 0 -1) r(0
         0) U5
       X-Cdn:
       - Incapsula
@@ -445,5 +445,5 @@ http_interactions:
           ]
         }
     http_version: 
-  recorded_at: Fri, 25 Jan 2019 20:28:18 GMT
+  recorded_at: Fri, 25 Jan 2019 21:32:53 GMT
 recorded_with: VCR 4.0.0

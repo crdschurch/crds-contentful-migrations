@@ -162,7 +162,6 @@ The frontmatter in seeds represents the meta data and fields to associate with t
 
 All meta data begin with an underscore. If a frontmatter key does not begin with an underscore, it is considered a field (see below). There are two meta fields available:
 
-- `_content_type`: The ID of the content type for the entry that should be created. **This is required** of every seed.
 - `_body_field`: If you are including body content in the seed and the field for which the body should be saved **is not called `body`**, then you should include this option, which maps the seed's body content to a field on the model. For example:
 
     ```markdown
@@ -174,6 +173,8 @@ All meta data begin with an underscore. If a frontmatter key does not begin with
 
     This content would be mapped to the `description` field, not the `body` field.
     ```
+- `_content_type`: The ID of the content type for the entry that should be created. **This is required** of every seed.
+- `id`: The ID of the entry in Contentful. If this is present, the entry will be retrieved and updated rather than creating a new entry.
 
 #### Fields
 

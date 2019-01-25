@@ -12,8 +12,7 @@ class Seeder
       next unless File.file?(file)
       seed = Seed.new(file)
       seed.parse_file!
-      seed.init_entry!
-      seed.save_entry!
+      seed.create_or_update_entry!
       seed.publish_entry!
       STDOUT.write('.')
     end
@@ -43,20 +42,18 @@ class Seed
     self
   end
 
-  # Set a reference to a Contentful entry object with the current fields.
+  # If an _id key is present in the frontmatter, find the entry in Contentful,
+  # update the fields and save the changes. Otherwise, create a new entry.
   #
-  def init_entry!
-    raise "Can't initialize an entry without fields." if fields.blank?
-    self.entry = try(:_id) ? contentful.entries.find(_id) : content_type.entries.new
-    fields.map { |k, v| entry.send("#{k}=", v) }
-    entry
-  end
-
-  # Save the entry in Contentful.
-  #
-  def save_entry!
-    raise "Must first initialize the entry." if entry.blank?
-    self.entry = entry.save
+  def create_or_update_entry!
+    raise "Must parse fields prior to creating an entry." if fields.blank?
+    self.entry = if try(:_id)
+      entry = contentful.entries.find(_id)
+      fields.map { |k, v| entry.fields(:'en-US')[k] = v }
+      entry.save
+    else
+      content_type.entries.create(fields)
+    end
   end
 
   # Publish the Contentful entry.
