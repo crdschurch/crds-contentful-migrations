@@ -4,8 +4,6 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 
-require 'dotenv/load'
-
 require 'revertable_migration'
 require 'migration_utils'
 
