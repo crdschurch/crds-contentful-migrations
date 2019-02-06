@@ -1,5 +1,7 @@
 require 'contentful_migrations'
 require 'environments'
+require 'active_support/all'
+
 namespace :contentful_migrations do
 
   task :ci do
@@ -51,6 +53,26 @@ namespace :contentful_migrations do
     task :ls do |_t, _args|
       Environments.new.ls
     end
+  end
+
+  desc 'Create a new migration'
+  task :new  do |_t, _args|
+    raise "Missing required filename." unless ARGV.size >= 2
+    ARGV.each { |a| task a.to_sym do ; end } # https://cobwwweb.com/4-ways-to-pass-arguments-to-a-rake-task
+    # Build filename.
+    timestamp = Time.now.strftime("%Y%m%d%H%M%S")
+    base_name = ARGV[1].parameterize.underscore
+    filename = "#{timestamp}_#{base_name}.rb"
+    # Class name is generated from the filename.
+    class_name = base_name.classify
+    # Read and parse the base template.
+    template_file_path = File.expand_path('templates/new_migration.erb', __dir__)
+    template = File.read(template_file_path)
+    content = ERB.new(template).result(binding)
+    # Write the blank migration
+    migration_file_path = File.expand_path("../../#{ENV['MIGRATION_PATH']}/#{filename}", __dir__)
+    File.open(migration_file_path, 'w+') { |f| f.write(content) }
+    puts "Empty migration written to #{migration_file_path.gsub("#{FileUtils.pwd}/", '')}"
   end
 
   desc 'Migrate the contentful space, runs all pending migrations'

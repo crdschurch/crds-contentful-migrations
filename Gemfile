@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', require: false
+gem 'activesupport'
 gem 'contentful-migrations'
+gem 'httparty'
 gem 'pry'
 gem 'rake'
-gem 'httparty'
-gem 'activesupport'
+gem 'rspec'
+gem 'vcr'
 gem 'waitutil'
+gem 'webmock'
 
 # fix security issues
 # https://nvd.nist.gov/vuln/detail/CVE-2018-16471
