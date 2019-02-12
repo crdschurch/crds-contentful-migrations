@@ -2,7 +2,6 @@ class AddRecommendedMediaToArticle < ContentfulMigrations::Migration
 
   include MigrationUtils
 
-  # /Users/jeff/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/gems/contentful-management-2.6.0/lib/contentful/management
   def up
     with_space do |space|
       content_type = space.content_types.find('article')
@@ -22,10 +21,10 @@ class AddRecommendedMediaToArticle < ContentfulMigrations::Migration
         field.omitted = true
         field.disabled = true
       end
-      
+
       content_type.save
       content_type.activate
-      
+
       %w(recommended_media sign_off).each do |field_name|
         content_type.fields.destroy(field_name)
       end
