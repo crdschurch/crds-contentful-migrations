@@ -6,13 +6,8 @@ class AddRecommendedMediaToArticle < ContentfulMigrations::Migration
   def up
     with_space do |space|
       content_type = space.content_types.find('article')
-
       content_type.fields.create(id: 'recommended_media', name: 'Recommended Media', type: 'Link', link_type: 'Entry', required: true, validations: [validation_of_type(%w(article episode message song podcast series video))])
       content_type.save
-
-      validation_size = Contentful::Management::Validation.new
-      validation_size.size = { min: 1, max: 1 }
-
       content_type.publish
     end
   end
