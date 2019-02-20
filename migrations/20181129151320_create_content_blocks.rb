@@ -19,7 +19,7 @@ class CreateContentBlocks < RevertableMigration
       validation_for_type.in = ['success', 'error', 'warning', 'info']
       content_type.fields.create(id: 'type', name: 'Type', type: 'Symbol', required: true, validations: [validation_for_type])
       validation_for_category = Contentful::Management::Validation.new
-      validation_for_category.in = ['common', 'main', 'corkboard', 'trip application', 'group tool', 'echeck', 'giving', 'ddk', 'finder', 'group leader', 'shared leader', 'serve', 'wayfinder']
+      validation_for_category.in = ['common', 'main', 'corkboard', 'trip application', 'group tool', 'echeck', 'giving', 'ddk', 'finder', 'group leader', 'shared leader', 'serve', 'wayfinder', 'media']
       content_type.fields.create(id: 'category', name: 'Category', type: 'Symbol', required: true, validations: [validation_for_category])
       validation_for_class_name = Contentful::Management::Validation.new
       validation_for_class_name.in = ['ContentBlock']
