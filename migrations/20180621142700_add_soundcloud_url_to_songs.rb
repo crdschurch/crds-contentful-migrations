@@ -4,7 +4,7 @@ class AddSoundcloudUrlToSongs < ContentfulMigrations::Migration
   def up
     with_space do |space|
       content_type = space.content_types.find('song')
-      content_type.fields.create(id: 'soundcloud_url', name: 'Soundcloud URL', type: 'Symbol')
+      content_type.fields.create(id: 'soundcloud_url', name: 'Soundcloud URL', type: 'Symbol', validations: [uniqueness_of])
       content_type.save
       content_type.publish
     end
