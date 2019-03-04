@@ -4,8 +4,8 @@ class AddMonetateToPage < ContentfulMigrations::Migration
 
   def up
     with_space do |space|
-      content_type = space.content_types.find(type)
-      content_type.fields.create(id: 'monetate_page_type', name: 'Monetate Page Type', type: 'Symbol'
+      content_type = space.content_types.find('page')
+      content_type.fields.create(id: 'monetate_page_type', name: 'Monetate Page Type', type: 'Symbol')
       content_type.save
       content_type.publish
     end
