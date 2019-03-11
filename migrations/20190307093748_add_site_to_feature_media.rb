@@ -8,6 +8,7 @@ class AddSiteToFeatureMedia < ContentfulMigrations::Migration
       validation_for_site = Contentful::Management::Validation.new
       validation_for_site.in = ['net', 'media']
       content_type.fields.create(id: 'site', name: 'Site', type: 'Symbol', required: true, validations: [validation_for_site])
+      content_type.save
 
       editor_interface = content_type.editor_interface.default
       controls = editor_interface.controls
