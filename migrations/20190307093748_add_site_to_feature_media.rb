@@ -9,14 +9,14 @@ class AddSiteToFeatureMedia < ContentfulMigrations::Migration
       validation_for_site.in = ['net', 'media']
       content_type.fields.create(id: 'site', name: 'Site', type: 'Symbol', required: true, validations: [validation_for_site])
 
+      content_type.save
+      content_type.publish
+
       editor_interface = content_type.editor_interface.default
       controls = editor_interface.controls
       controls.detect { |c| c['fieldId'] == 'site' }['settings'] = { 'widgetId' => 'dropdown' }
       editor_interface.update(controls: controls)
       editor_interface.reload
-
-      content_type.save
-      content_type.publish
     end
   end
 
