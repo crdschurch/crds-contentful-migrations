@@ -15,9 +15,6 @@ class AddSlugToContentBlock < ContentfulMigrations::Migration
       editor_interface.update(controls: controls)
       editor_interface.reload
 
-      field = content_type.fields.detect { |f| f.id == 'slug' }
-      field.disabled = true
-
       content_type.save
       content_type.publish
     end
