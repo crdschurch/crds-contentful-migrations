@@ -1,4 +1,4 @@
-class AddTimestampsToMessagesAndVideo < ContentfulMigrations::Migration
+class AddTimestampsToMessagesAndVideos < ContentfulMigrations::Migration
   def up
     with_space do |space|
       %w(message video).each do |type|
