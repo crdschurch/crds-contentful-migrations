@@ -7,16 +7,15 @@ class AddTimestampsToMessagesAndVideos < ContentfulMigrations::Migration
         content_type.save
         content_type.publish
 
-        # Set Editor UI
-        with_editor_interfaces do |editor_interfaces|
-          editor_interface = editor_interfaces.default(space_id, 'timestamps')
-          controls = editor_interface.controls
-          controls.detect { |e| e['fieldId'] == 'timestamps' }['widgetNamespace'] = 'extension'
-          controls.detect { |e| e['fieldId'] == 'timestamps' }['widgetId'] = "7ArP5EZMYZWpGH08FIy0IA"
-          editor_interface.update(controls: controls)
-          editor_interface.reload
-        end
+        editor_interface = content_type.editor_interface.default
+        controls = editor_interface.controls
+        controls.detect { |c| c['fieldId'] == 'timestamps' }['widgetNamespace'] = 'extension'
+        controls.detect { |c| c['fieldId'] == 'timestamps' }['widgetId'] = '7ArP5EZMYZWpGH08FIy0IA'
+        editor_interface.update(controls: controls)
+        editor_interface.reload
 
+        content_type.save
+        content_type.publish
       end
     end
   end
