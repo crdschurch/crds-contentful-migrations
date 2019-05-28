@@ -17,7 +17,9 @@ class AddExcludeAndCanonicalFields < ContentfulMigrations::Migration
 
         editor_interface = content_type.editor_interface.default
         controls = editor_interface.controls
-        controls.detect { |e| e['fieldId'] == 'canonical_host' }['widgetId'] = "dropdown"
+        field = controls.detect { |e| e['fieldId'] == 'canonical_host' }
+        field['widgetId'] = "dropdown"
+        field['settings'] = { 'helpText' => 'If blank, content will be canonicalized to crossroads.net' }
         editor_interface.update(controls: controls)
         editor_interface.reload
 
