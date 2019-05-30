@@ -10,7 +10,7 @@ class AddExcludeAndCanonicalFields < ContentfulMigrations::Migration
 
         content_type.fields.create(id: 'exclude_from_crossroads', name: 'Exclude from crossroads.net?', type: 'Boolean')
         validation_for_type = Contentful::Management::Validation.new
-        validation_for_type.in = ['crossroads.net', 'briantome.com']
+        validation_for_type.in = ['www.crossroads.net', 'www.briantome.com']
         content_type.fields.create(id: 'canonical_host', name: 'Canonical Host', type: 'Symbol', validations: [validation_for_type])
         content_type.save
         content_type.publish
