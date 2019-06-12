@@ -1,4 +1,4 @@
-class AddBitmovinVideoSong < ContentfulMigrations::Migration
+class AddBitmovinVideo < ContentfulMigrations::Migration
   include MigrationUtils
 
   def up
