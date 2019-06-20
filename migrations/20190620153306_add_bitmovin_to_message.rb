@@ -1,4 +1,4 @@
-class AddBitmovinVideo < ContentfulMigrations::Migration
+class AddBitmovinToMessage < ContentfulMigrations::Migration
   include MigrationUtils
 
   def up
