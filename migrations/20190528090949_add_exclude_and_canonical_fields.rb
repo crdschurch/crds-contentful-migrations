@@ -5,7 +5,7 @@ class AddExcludeAndCanonicalFields < ContentfulMigrations::Migration
 
   def up
     with_space do |space|
-      %w(article video).each do |cid|
+      %w(article video podcast).each do |cid|
         content_type = space.content_types.find(cid)
 
         content_type.fields.create(id: 'exclude_from_crossroads', name: 'Exclude from crossroads.net?', type: 'Boolean')
@@ -32,7 +32,7 @@ class AddExcludeAndCanonicalFields < ContentfulMigrations::Migration
   def down
     with_space do |space|
       with_space do |space|
-        %w(article video).each do |cid|
+        %w(article video podcast).each do |cid|
           content_type = space.content_types.find(cid)
           %w(exclude_from_crossroads canonical_host).each do |id|
             field = content_type.fields.detect { |f| f.id == id }
