@@ -3,7 +3,7 @@ class CreateCollectionReferences < ContentfulMigrations::Migration
 
   def up
     with_space do |space|
-      content_types = %w[article episode video message song podcast]
+      content_types = %w[article episode video message song]
 
       content_types.each do |name|
         content_type = space.content_types.find(name)
@@ -18,7 +18,7 @@ class CreateCollectionReferences < ContentfulMigrations::Migration
 
   def down
     with_space do |space|
-      content_types = %w[article episode video message song podcast]
+      content_types = %w[article episode video message song]
 
       content_types.each do |name|
         content_type = space.content_types.find(name)
