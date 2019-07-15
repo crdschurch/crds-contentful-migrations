@@ -1,36 +1,33 @@
 class UpdateSong < RevertableMigration
 
-  self.content_type_id = 'song'
-
   def up
 
-    content_type = space.content_types.find('song')
-
-    # Delete Unecessary Fields
-    content_type.fields.destroy('description')
-    content_type.fields.destroy('details')
-    content_type.fields.destroy('chords')
-    content_type.fields.destroy('category')
-    content_type.fields.destroy('author')
-    content_type.fields.destroy('audio_duration')
-    content_type.fields.destroy('album')
-    content_type.fields.destroy('image')
-    content_type.fields.destroy('related_videos')
-    content_type.fields.destroy('tags')
-    content_type.fields.destroy('published_at')
-    content_type.fields.destroy('unpublished_at')
-    content_type.fields.destroy('soundcloud_url')
-    content_type.fields.destroy('call_to_action')
-    content_type.fields.destroy('featured_subtitle')
-    content_type.fields.destroy('featured_label')
-    content_type.fields.destroy('duration')
-    content_type.fields.destroy('collections')
-
-    content_type.save
-    content_type.publish
-
-
     with_space do |space|
+
+      content_type = space.content_types.find('song')
+
+      # Delete Fields
+      content_type.fields.destroy('description')
+      content_type.fields.destroy('details')
+      content_type.fields.destroy('chords')
+      content_type.fields.destroy('category')
+      content_type.fields.destroy('author')
+      content_type.fields.destroy('audio_duration')
+      content_type.fields.destroy('album')
+      content_type.fields.destroy('image')
+      content_type.fields.destroy('related_videos')
+      content_type.fields.destroy('tags')
+      content_type.fields.destroy('published_at')
+      content_type.fields.destroy('unpublished_at')
+      content_type.fields.destroy('soundcloud_url')
+      content_type.fields.destroy('call_to_action')
+      content_type.fields.destroy('featured_subtitle')
+      content_type.fields.destroy('featured_label')
+      content_type.fields.destroy('duration')
+      content_type.fields.destroy('collections')
+
+      content_type.save
+      content_type.publish
 
       # Create Fields
       content_type.fields.create(id: 'ccli_number', name: 'CCLI Number', type: 'Symbol', required: true)
@@ -42,7 +39,7 @@ class UpdateSong < RevertableMigration
 
       content_type.save
       content_type.publish
-        
+
       apply_editor(space, 'slug', 'slugEditor')
 
     end
