@@ -1,4 +1,6 @@
-class UpdateSong < RevertableMigration
+class UpdateSong < ContentfulMigrations::Migration
+
+  include MigrationUtils
 
   def up
 
@@ -6,42 +8,108 @@ class UpdateSong < RevertableMigration
 
       content_type = space.content_types.find('song')
 
-      # Delete Fields
-      content_type.fields.destroy('description')
-      content_type.fields.destroy('details')
-      content_type.fields.destroy('chords')
-      content_type.fields.destroy('category')
-      content_type.fields.destroy('author')
-      content_type.fields.destroy('audio_duration')
-      content_type.fields.destroy('album')
-      content_type.fields.destroy('image')
-      content_type.fields.destroy('related_videos')
-      content_type.fields.destroy('tags')
-      content_type.fields.destroy('published_at')
-      content_type.fields.destroy('unpublished_at')
-      content_type.fields.destroy('soundcloud_url')
-      content_type.fields.destroy('call_to_action')
-      content_type.fields.destroy('featured_subtitle')
-      content_type.fields.destroy('featured_label')
-      content_type.fields.destroy('duration')
-      content_type.fields.destroy('collections')
+      # Delete fields
+      fields = [
+        'description',
+        'details',
+        'chords',
+        'category',
+        'author',
+        'audio_duration',
+        'album',
+        'image',
+        'related_videos',
+        'tags',
+        'published_at',
+        'unpublished_at',
+        'soundcloud_url',
+        'call_to_action',
+        'featured_subtitle',
+        'featured_label',
+        'duration',
+        'collections'
+      ]
 
+      fields.each do |field|
+        field = content_type.fields.detect { |f| f.id == field }
+        next unless field
+        field.omitted = true
+        field.disabled = true
+      end
+      
       content_type.save
       content_type.publish
+      
+      fields.each do |field|
+        content_type.fields.destroy(field)
+      end
 
       # Create Fields
       content_type.fields.create(id: 'ccli_number', name: 'CCLI Number', type: 'Symbol', required: true)
       content_type.fields.create(id: 'written_by', name: 'Written By', type: 'Symbol', required: true)
-      content_type.fields.create(id: 'song_select_url', name: 'Song Select Url', type: 'Link', required: true)
-      content_type.fields.create(id: 'video', name: 'Video', type: 'Link', link_type: 'Asset', validations: [require_mime_type(:video)])
+      content_type.fields.create(id: 'song_select_url', name: 'Song Select Url', type: 'Symbol')
+      content_type.fields.create(id: 'video', name: 'Video', type: 'Link', link_type: 'Entry', validations: [validation_of_type('video')])
       content_type.fields.create(id: 'lyric_file', name: 'Lyric File', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'chords_file', name: 'Chords File', type: 'Link', link_type: 'Asset')
 
       content_type.save
       content_type.publish
+    end
+  end
 
-      apply_editor(space, 'slug', 'slugEditor')
+  def down
+
+    with_space do |space|
+      
+      # Delete fields
+      fields = [
+        'ccli_number'
+        'written_by'
+        'song_select_url'
+        'video'
+        'lyric_file'
+        'chords_file'
+      ]
+
+      fields.each do |field|
+        field = content_type.fields.detect { |f| f.id == field }
+        next unless field
+        field.omitted = true
+        field.disabled = true
+      end
+      
+      content_type.save
+      content_type.publish
+      
+      fields.each do |field|
+        content_type.fields.destroy(field)
+      end
+
+      items = Contentful::Management::Field.new	
+      items.type = 'Symbol'	
+
+      # Create fields
+      content_type.fields.create(id: 'description', name: 'Description', type: 'Text')	
+      content_type.fields.create(id: 'details', name: 'Details', type: 'Text')	
+      content_type.fields.create(id: 'chords', name: 'Chords', type: 'Text')	
+      content_type.fields.create(id: 'tags', name: 'Tags', type: 'Array', items: items)	
+      content_type.fields.create(id: 'category', name: 'Category', type: 'Link', link_type: 'Entry', validations: [validation_of_type('category')])	
+      content_type.fields.create(id: 'author', name: 'Author', type: 'Array', items: items_of_type('Entry', 'author'))	
+      content_type.fields.create(id: 'audio_duration', name: 'Audio Duration', type: 'Text')	
+      content_type.fields.create(id: 'album', name: 'Album', type: 'Link', link_type: 'Entry', validations: [validation_of_type('author')])	
+      content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)	
+      content_type.fields.create(id: 'featured_subtitle', name: 'Featured subtitle', type: 'Symbol')	
+      content_type.fields.create(id: 'featured_label', name: 'Featured label', type: 'Symbol')	
+      content_type.fields.create(id: 'duration', name: 'duration (seconds)', type: 'Integer')	
+      content_type.fields.create(id: 'collections', name: 'Collections', type: 'Link', link_type: 'Entry', validations: [validation_of_type('collection')])
+      content_type.fields.create(id: 'soundcloud_url', name: 'YouTube URL', type: 'Symbol')	
+      content_type.fields.create(id: 'published_at', name: 'Published At', type: 'Date', required: true)	
+      content_type.fields.create(id: 'related_videos', name: 'Related Videos', type: 'Array', items: items_of_type('Entry', 'video'))
+
+      content_type.save
+      content_type.publish
 
     end
+
   end
 end
