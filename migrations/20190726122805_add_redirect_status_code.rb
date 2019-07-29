@@ -13,6 +13,7 @@ class AddRedirectStatusCode < ContentfulMigrations::Migration
       validation_for_type.in = [200,301,302,401,410]
       content_type.fields.create(id: 'status_code', name: 'Status code', type: 'Integer', validations: [validation_for_type])
 
+      ## This feild give users option to include a '!' after the redirect rule
       content_type.fields.create(id: 'is_forced', name: 'Is forced', type: 'Boolean')
       
       ## Publish
@@ -22,9 +23,9 @@ class AddRedirectStatusCode < ContentfulMigrations::Migration
       ## Editor interface configuration
       editor_interface = content_type.editor_interface.default
       controls = editor_interface.controls
-      field = controls.detect { |e| e['fieldId'] == 'snail_trail' }
+      field = controls.detect { |e| e['fieldId'] == 'status_code' }
       field['widgetId'] = "dropdown"
-      field['settings'] = { 'helpText' => 'If blank, validation will default to 301' }
+      field['settings'] = { 'helpText' => 'If blank, validation will default to 302' }
       editor_interface.update(controls: controls)
       editor_interface.reload
 
@@ -41,7 +42,7 @@ class AddRedirectStatusCode < ContentfulMigrations::Migration
       content_type = space.content_types.find('redirect')
 
       # Delete Fields
-      fields = ['status_code']
+      fields = ['status_code','is_forced']
       fields.each do |field|
 
         field = content_type.fields.detect { |f| f.id == field }
