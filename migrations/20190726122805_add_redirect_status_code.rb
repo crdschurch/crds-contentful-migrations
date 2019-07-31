@@ -12,8 +12,6 @@ class AddRedirectStatusCode < ContentfulMigrations::Migration
       validation_for_type = Contentful::Management::Validation.new
       validation_for_type.in = [200,301,302,401,410]
       content_type.fields.create(id: 'status_code', name: 'Status code', type: 'Integer', validations: [validation_for_type])
-
-      ## This feild give users option to include a '!' after the redirect rule
       content_type.fields.create(id: 'is_forced', name: 'Is forced', type: 'Boolean')
       
       ## Publish
