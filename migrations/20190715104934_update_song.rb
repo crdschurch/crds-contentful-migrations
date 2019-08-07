@@ -42,12 +42,16 @@ class UpdateSong < ContentfulMigrations::Migration
       end
 
       # Create Fields
-      content_type.fields.create(id: 'ccli_number', name: 'CCLI Number', type: 'Symbol', required: true)
-      content_type.fields.create(id: 'written_by', name: 'Written By', type: 'Symbol', required: true)
+      content_type.fields.create(id: 'ccli_number', name: 'CCLI Number', type: 'Symbol')
+      content_type.fields.create(id: 'written_by', name: 'Written By', type: 'Symbol')
       content_type.fields.create(id: 'song_select_url', name: 'Song Select Url', type: 'Symbol')
       content_type.fields.create(id: 'video', name: 'Video', type: 'Link', link_type: 'Entry', validations: [validation_of_type('video')])
       content_type.fields.create(id: 'lyrics_file', name: 'Lyrics File', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'chords_file', name: 'Chords File', type: 'Link', link_type: 'Asset')
+
+      # Set required fields
+      field = content_type.fields.detect { |f| f.id == 'bg_image' }
+      field.required = true
 
       content_type.save
       content_type.publish
