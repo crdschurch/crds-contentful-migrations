@@ -64,11 +64,11 @@ class UpdateSong < ContentfulMigrations::Migration
       
       # Delete fields
       fields = [
-        'ccli_number'
-        'written_by'
-        'song_select_url'
-        'video'
-        'lyrics_file'
+        'ccli_number',
+        'written_by',
+        'song_select_url',
+        'video',
+        'lyrics_file',
         'chords_file'
       ]
 
