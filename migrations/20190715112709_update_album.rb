@@ -13,7 +13,7 @@ class UpdateAlbum < ContentfulMigrations::Migration
 
         field = content_type.fields.detect { |f| f.id == field }
         next unless
-        field.omitted = true 
+        field.omitted = true
         field.disabled = true
 
       end
@@ -28,7 +28,7 @@ class UpdateAlbum < ContentfulMigrations::Migration
       # Create Fields
       content_type.fields.create(id: 'behind_the_scenes', name: 'Behind the scenes', type: 'Text')
       content_type.fields.create(id: 'songs', name: 'Songs', type: 'Array', items: items_of_type('Entry', 'song'))
-      content_type.fields.create(id: 'featured_videos', name: 'featured_videos', type: 'Array', items: items_of_type('Entry', 'video'))
+      content_type.fields.create(id: 'featured_videos', name: 'Featured Videos', type: 'Array', items: items_of_type('Entry', 'video'))
       content_type.fields.create(id: 'youtube_url', name: 'Youtube URL', type: 'Symbol')
 
       content_type.save
@@ -37,7 +37,7 @@ class UpdateAlbum < ContentfulMigrations::Migration
     end
   end
 
-  def down 
+  def down
 
     with_space do |space|
 
@@ -67,6 +67,6 @@ class UpdateAlbum < ContentfulMigrations::Migration
 
       content_type.save
       content_type.publish
-    end 
+    end
   end
 end
