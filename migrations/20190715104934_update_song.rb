@@ -24,7 +24,8 @@ class UpdateSong < ContentfulMigrations::Migration
         'featured_subtitle',
         'featured_label',
         'duration',
-        'collections'
+        'collections',
+        'related_videos'
       ]
 
       fields.each do |field|
@@ -45,7 +46,7 @@ class UpdateSong < ContentfulMigrations::Migration
       content_type.fields.create(id: 'ccli_number', name: 'CCLI Number', type: 'Symbol')
       content_type.fields.create(id: 'written_by', name: 'Written By', type: 'Symbol')
       content_type.fields.create(id: 'song_select_url', name: 'Song Select Url', type: 'Symbol')
-      content_type.fields.create(id: 'video', name: 'Video', type: 'Link', link_type: 'Entry', validations: [validation_of_type('video')])
+      content_type.fields.create(id: 'videos', name: 'Videos', type: 'Array', items: items_of_type('Entry', 'video'))
       content_type.fields.create(id: 'lyrics_file', name: 'Lyrics File', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'chords_file', name: 'Chords File', type: 'Link', link_type: 'Asset')
 
@@ -67,7 +68,7 @@ class UpdateSong < ContentfulMigrations::Migration
         'ccli_number',
         'written_by',
         'song_select_url',
-        'video',
+        'videos',
         'lyrics_file',
         'chords_file'
       ]
@@ -104,6 +105,7 @@ class UpdateSong < ContentfulMigrations::Migration
       content_type.fields.create(id: 'duration', name: 'duration (seconds)', type: 'Integer')	
       content_type.fields.create(id: 'collections', name: 'Collections', type: 'Link', link_type: 'Entry', validations: [validation_of_type('collection')])
       content_type.fields.create(id: 'soundcloud_url', name: 'YouTube URL', type: 'Symbol')	
+      content_type.fields.create(id: 'related_videos', name: 'Related Videos', type: 'Array', items: items_of_type('Entry', 'video'))
 
       content_type.save
       content_type.publish
