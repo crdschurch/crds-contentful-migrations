@@ -13,7 +13,7 @@ class CreateLifeStage < RevertableMigration
       content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text')
       content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)
-      content_type.fields.create(id: 'content', name: 'Content', type: 'Array', items: items_of_type('Entry'))
+      content_type.fields.create(id: 'content', name: 'Content', type: 'Array', items: items_of_type('Entry', ['article','podcast','video','message','series']))
 
       content_type.save
       content_type.publish
