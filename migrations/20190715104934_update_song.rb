@@ -68,7 +68,7 @@ class UpdateSong < ContentfulMigrations::Migration
         'ccli_number',
         'written_by',
         'song_select_url',
-        'video',
+        'videos',
         'lyrics_file',
         'chords_file'
       ]
@@ -105,6 +105,7 @@ class UpdateSong < ContentfulMigrations::Migration
       content_type.fields.create(id: 'duration', name: 'duration (seconds)', type: 'Integer')	
       content_type.fields.create(id: 'collections', name: 'Collections', type: 'Link', link_type: 'Entry', validations: [validation_of_type('collection')])
       content_type.fields.create(id: 'soundcloud_url', name: 'YouTube URL', type: 'Symbol')	
+      content_type.fields.create(id: 'related_videos', name: 'Related Videos', type: 'Array', items: items_of_type('Entry', 'video'))
 
       content_type.save
       content_type.publish
