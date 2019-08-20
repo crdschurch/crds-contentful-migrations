@@ -17,7 +17,7 @@ class CreateOnsiteGroupMeeting < RevertableMigration
      content_type.fields.create(id: 'start_date', name: 'Start Date', type: 'Text', required: true)	
      content_type.fields.create(id: 'meeting_time', name: 'Meeting Time', type: 'Text', required: true)	
 
-     controls.detect { |e| e['fieldId'] == 'location' }['settings'] = { 'helpText' => 'If you do not specify location, be sure to add it to the corresponding group otherwise it will not be displayed' }
+     controls.detect { |e| e['fieldId'] == 'location' }['settings'] = { 'helpText' => 'If you do not specify location, be sure to add it to the corresponding Onsite Group otherwise it will not be displayed' }
 
      apply_editor(space, 'slug', 'slugEditor')	
 
