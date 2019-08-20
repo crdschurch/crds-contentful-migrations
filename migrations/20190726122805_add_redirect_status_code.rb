@@ -34,6 +34,8 @@ class AddRedirectStatusCode < ContentfulMigrations::Migration
       content_type.save
       content_type.publish
 
+      binding.pry 
+      
     end
   end
 
