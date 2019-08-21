@@ -5,7 +5,7 @@ class CreateOnsiteGroupCategory < RevertableMigration
   def up	
    with_space do |space|	
      content_type = space.content_types.create(	
-       name: 'onsite_group_category',	
+       name: 'Onsite Group Category',	
        id: content_type_id,	
        description: 'A category for onsite groups'	
      )	
@@ -15,9 +15,10 @@ class CreateOnsiteGroupCategory < RevertableMigration
      content_type.fields.create(id: 'description', name: 'Description', type: 'Text')	
      content_type.fields.create(id: 'image', name: 'Image', type: 'Link', link_type: 'Asset', required: true)	
 
-     content_type.save	
-     content_type.publish	
-     apply_editor(space, 'slug', 'slugEditor')	
+     content_type.activate
+
+     apply_editor(content_type, 'slug', 'slugEditor')	
+
    end	
  end	
 end 
