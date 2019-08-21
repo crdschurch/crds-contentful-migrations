@@ -5,8 +5,7 @@ class AddDescriptionToLocation < ContentfulMigrations::Migration
     with_space do |space|
       content_type = space.content_types.find('location')
       content_type.fields.create(id: 'onsite_group_description', name: 'Onsite Group Description', type: 'Text')
-      content_type.save
-      content_type.publish
+      content_type.activate
     end
   end
 
@@ -18,9 +17,9 @@ class AddDescriptionToLocation < ContentfulMigrations::Migration
       field.omitted = true
       field.disabled = true
 
-      content_type.save
       content_type.activate
       content_type.fields.destroy('onsite_group_description')
+      content_type.activate
     end
   end
 end
