@@ -17,9 +17,8 @@ class CreateOnsiteGroup < RevertableMigration
        content_type.fields.create(id: 'meetings', name: 'Meetings', type: 'Array', items: items_of_type('Entry', 'onsite_group_meeting'))
        content_type.fields.create(id: 'category', name: 'Category', type: 'Link', link_type: 'Entry', validations: [validation_of_type('onsite_group_category')])
 
-       content_type.save	
-       content_type.publish	
-       apply_editor(space, 'slug', 'slugEditor')	
+       content_type.activate
+       apply_editor(content_type, 'slug', 'slugEditor')	
     end
   end
 end
