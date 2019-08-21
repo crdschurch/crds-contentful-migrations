@@ -1,10 +1,8 @@
-CRDS Contentful Migrations
-==========
+# CRDS Contentful Migrations
 
 This repo contains Contentful schema migrations for Crossroads. It's built on top of [contentful-migrations.rb](https://github.com/monkseal/contentful-migrations.rb) which provides Rake tasks for managing content models via the [Contentful Management API](https://www.contentful.com/developers/docs/references/content-management-api/).
 
-Usage
-----------
+## Usage
 
 First, ensure the following environment variables should be set with the appropriate values:
 
@@ -35,8 +33,7 @@ To seed the database with test data:
 
     $ bundle exec rake seed_data
 
-Migrations
-----------
+## Migrations
 
 The migrations are built on top of [contentful-migrations.rb](https://github.com/monkseal/contentful-migrations.rb). Refer to [its API docs](https://github.com/monkseal/contentful-migrations.rb#migration-api) for information on setting up and writing migrations.
 
@@ -120,13 +117,12 @@ content_type.fields.create(id: 'slug', name: 'Slug', type: 'Symbol', required: t
 # ...
 content_type.save
 content_type.publish
-apply_editor(space, 'slug', 'slugEditor')
+apply_editor(content_type, 'slug', 'slugEditor')
 content_type.save
 content_type.publish
 ```
 
-Data Seeds
-----------
+## Data Seeds
 
 In addition to running schema migrations, this library also supports seeding the Contentful database with test data. This enables QA engineers to automatically populate the database with repeatable test cases when environments are created from the `master` environment.
 
@@ -164,15 +160,16 @@ All meta data begin with an underscore. If a frontmatter key does not begin with
 
 - `_body_field`: If you are including body content in the seed and the field for which the body should be saved **is not called `body`**, then you should include this option, which maps the seed's body content to a field on the model. For example:
 
-    ```markdown
-    ---
-    _content_type: article
-    _body_field: description
-    title: Hello World
-    ---
+  ```markdown
+  ---
+  _content_type: article
+  _body_field: description
+  title: Hello World
+  ---
 
-    This content would be mapped to the `description` field, not the `body` field.
-    ```
+  This content would be mapped to the `description` field, not the `body` field.
+  ```
+
 - `_content_type`: The ID of the content type for the entry that should be created. **This is required** of every seed.
 - `id`: The ID of the entry in Contentful. If this is present, the entry will be retrieved and updated rather than creating a new entry.
 
@@ -213,7 +210,6 @@ tags:
   - 31xMlxGaBWKw0aYK2ESgQA
 ```
 
-License
-----------
+## License
 
 This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
