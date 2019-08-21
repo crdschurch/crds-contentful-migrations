@@ -14,16 +14,12 @@ module MigrationUtils
     validation
   end
 
-  def apply_editor(space, field, editor, type=nil)
-    with_editor_interfaces do |editor_interfaces|
-      editor_interface = editor_interfaces.default(space.id, type || content_type_id)
-      controls = editor_interface.controls.map do |control|
-        control["widgetId"] = editor if control["fieldId"] == field
-        control
-      end
-      editor_interface.update(controls: controls)
-      editor_interface.reload
-    end
+  def apply_editor(content_type, field, editor, type=nil)
+    editor_interface = content_type.editor_interface.default
+    controls = editor_interface.controls
+    controls.detect { |c| c['fieldId'] == field }['widgetId'] = editor
+    editor_interface.update(controls: controls)
+    editor_interface.reload
   end
 
   def items_of_type(link_type, validates=nil)
