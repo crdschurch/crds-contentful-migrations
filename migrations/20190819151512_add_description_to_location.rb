@@ -19,7 +19,9 @@ class AddDescriptionToLocation < ContentfulMigrations::Migration
 
       content_type.save
       content_type.fields.destroy('onsite_group_description')
-      content_type.activate
+
+      content_type.save
+      content_type.publish
     end
   end
 end
