@@ -19,8 +19,7 @@ class CreateOnsiteGroup < RevertableMigration
       content_type.fields.create(id: 'category', name: 'Category', type: 'Link', link_type: 'Entry', validations: [validation_of_type('onsite_group_category')])
       content_type.fields.create(id: 'footnote', name: 'Footnote', type: 'Text')
 
-      content_type.save
-      content_type.publish
+      content_type.activate
 
       editor_interface = content_type.editor_interface.default
       controls = editor_interface.controls
