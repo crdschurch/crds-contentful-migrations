@@ -17,6 +17,7 @@ class CreateOnsiteGroup < RevertableMigration
       content_type.fields.create(id: 'detail', name: 'Detail', type: 'Text', required: true)
       content_type.fields.create(id: 'meetings', name: 'Meetings', type: 'Array', items: items_of_type('Entry', 'onsite_group_meeting'))
       content_type.fields.create(id: 'category', name: 'Category', type: 'Link', link_type: 'Entry', validations: [validation_of_type('onsite_group_category')])
+      content_type.fields.create(id: 'footnote', name: 'Footnote', type: 'Text')
 
       content_type.save
       content_type.publish
@@ -24,7 +25,7 @@ class CreateOnsiteGroup < RevertableMigration
       editor_interface = content_type.editor_interface.default
       controls = editor_interface.controls
 
-      controls.detect { |e| e['fieldId'] == 'Length' }['settings'] = { 'helpText' => 'How long the group will be active for . ie. 12 weeks' }
+      controls.detect { |e| e['fieldId'] == 'Length' }['settings'] = { 'helpText' => 'How long the group will be active for. ie. 12 weeks' }
       controls.detect { |e| e['fieldId'] == 'Detail' }['settings'] = { 'helpText' => 'Who the group is perfect for. ie. Woman of all ages' }
 
       editor_interface.update(controls: controls)
