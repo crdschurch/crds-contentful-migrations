@@ -24,8 +24,8 @@ class CreateOnsiteGroup < RevertableMigration
       editor_interface = content_type.editor_interface.default
       controls = editor_interface.controls
 
-      controls.detect { |e| e['fieldId'] == 'Length' }['settings'] = { 'helpText' => 'How long the group will be active for. ie. 12 weeks' }
-      controls.detect { |e| e['fieldId'] == 'Detail' }['settings'] = { 'helpText' => 'Who the group is perfect for. ie. Woman of all ages' }
+      controls.detect { |e| e['fieldId'] == 'length' }['settings'] = { 'helpText' => 'How long the group will be active for. ie. 12 weeks' }
+      controls.detect { |e| e['fieldId'] == 'detail' }['settings'] = { 'helpText' => 'Who the group is perfect for. ie. Woman of all ages' }
 
       editor_interface.update(controls: controls)
       editor_interface.reload
