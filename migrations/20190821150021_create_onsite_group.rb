@@ -11,7 +11,7 @@ class CreateOnsiteGroup < RevertableMigration
        )
 
       content_type.fields.create(id: 'title', name: 'Title', type: 'Symbol', required: true)	
-      content_type.fields.create(id: 'slug', name: 'slug', type: 'Symbol', required: true)
+      content_type.fields.create(id: 'slug', name: 'Slug', type: 'Symbol', required: true)
       content_type.fields.create(id: 'description', name: 'Description', type: 'Text', required: true)	
       content_type.fields.create(id: 'length', name: 'Length', type: 'Symbol', required: true)	
       content_type.fields.create(id: 'detail', name: 'Detail', type: 'Text', required: true)
