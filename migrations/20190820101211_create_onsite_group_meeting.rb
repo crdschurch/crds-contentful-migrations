@@ -15,6 +15,7 @@ class CreateOnsiteGroupMeeting < RevertableMigration
     content_type.fields.create(id: 'location', name: 'Location', type: 'Link', link_type: 'Entry', validations: [validation_of_type('location')], required: true)	
     content_type.fields.create(id: 'description', name: 'Description', type: 'Text', required: true)	
     content_type.fields.create(id: 'starts_at', name: 'Starts at', type: 'Date', required: true)	
+    content_type.fields.create(id: 'meeting_room', name: 'Meetin Room', type: 'Symbol', required: true)	
     content_type.fields.create(id: 'meeting_time', name: 'Meeting Time', type: 'Text', required: true)	
 
     content_type.save
