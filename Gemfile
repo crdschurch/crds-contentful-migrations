@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport'
-gem 'contentful-migrations'
+gem 'contentful-migrations', git: 'https://github.com/monkseal/contentful-migrations.rb', branch: 'defect/DEXXXX-entry-limit'
 gem 'httparty'
 gem 'pry'
 gem 'rake'
