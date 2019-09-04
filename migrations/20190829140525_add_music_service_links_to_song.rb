@@ -28,7 +28,7 @@ class AddMusicServiceLinksToSong < ContentfulMigrations::Migration
       content_type.activate
 
       widget_id = {
-        'dev-test' => '',
+        'dev-test' => 'WtteiIZ1SLYNwdpEWrQjt',
         'int' => '3gJG8A9sX5AdbLY9um7GX0',
         'demo' => '19bKTiflHnZLNMUYMj6voB',
         'master' => 'WtteiIZ1SLYNwdpEWrQjt'
