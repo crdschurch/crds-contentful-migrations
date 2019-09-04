@@ -29,7 +29,7 @@ class CreatePages < RevertableMigration
 
       content_type.save
       content_type.publish
-      apply_editor(space, 'slug', 'slugEditor')
+      apply_editor(content_type, 'slug', 'slugEditor')
     end
   end
 end
