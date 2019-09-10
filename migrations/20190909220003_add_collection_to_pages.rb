@@ -19,6 +19,7 @@ class AddCollectionToPage < ContentfulMigrations::Migration
       content_type.save
       content_type.activate
       content_type.fields.destroy(id)
+      content_type.publish
     end
   end
 end
