@@ -1,4 +1,4 @@
-class AddCollectionToPage < ContentfulMigrations::Migration
+class AddCollectionToPages < ContentfulMigrations::Migration
   include MigrationUtils
 
   def up
