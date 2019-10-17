@@ -52,7 +52,7 @@ class UpdateIgrCategory < ContentfulMigrations::Migration
       end
 
       field = content_type.fields.detect { |f| f.id == 'description' }
-      field.disabled_editing = false
+      field.disabled = false
       
       content_type.activate
     end
