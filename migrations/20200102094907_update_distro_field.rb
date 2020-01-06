@@ -1,28 +1,13 @@
 class UpdateDistroField < ContentfulMigrations::Migration
+  def content_types
+    %w(album article content_block category collection episode message meta page podcast redirect series song video)
+  end
+  
   def up
     with_space do |space|
-
-      content_types = [ 
-                        'album',
-                        'article',
-                        'content_block',
-                        'category',
-                        'collection',
-                        'episode',
-                        'message',
-                        'meta',
-                        'page',
-                        'podcast',
-                        'redirect',
-                        'series',
-                        'song',
-                        'video'
-                      ]
-
       content_types.each do |name|
-
         content_type = space.content_types.find(name)
-
+        
         widget_id = {
           'development' => '7pen61ICvT0RvmFXRepZa3',
           'int' => '2XO3c2aXJj0MDelzxDwB3f',
@@ -43,23 +28,6 @@ class UpdateDistroField < ContentfulMigrations::Migration
 
   def down
     with_space do |space|
-      content_types = [ 
-        'album',
-        'article',
-        'content_block',
-        'category',
-        'collection',
-        'episode',
-        'message',
-        'meta',
-        'page',
-        'podcast',
-        'redirect',
-        'series',
-        'song',
-        'video'
-      ]
-
       content_types.each do |name|
         content_type = space.content_types.find(name)
   
