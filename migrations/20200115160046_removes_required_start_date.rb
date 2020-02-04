@@ -15,7 +15,7 @@ class RemovesRequiredStartDate < ContentfulMigrations::Migration
     with_space do |space|
 
       content_type = space.content_types.find('onsite_group_meeting')
-      field = content_type.fields.detect { |f| f.id == 'starts_at' } 
+      field = content_type.fields.detect { |f| f.id == 'starts_at' }  
       field.required = true
 
       content_type.save
