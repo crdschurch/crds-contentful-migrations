@@ -9,7 +9,6 @@ class CreateTripItinerary < RevertableMigration
         name: 'Trip Itinerary',
         id: content_type_id,
         description: 'Itinerary for Go Trips', 
-        displayField: 'day'
       )
 
       # Create fields
@@ -17,6 +16,13 @@ class CreateTripItinerary < RevertableMigration
       content_type.fields.create(id: 'activities', name: 'Activities', type: 'Symbol', required: true)
 
       # Save & Publish
+      content_type.save
+      content_type.publish
+
+      # Set Entry Title
+      content_type = space.content_types.find('trip_itinerary')
+      content_type.update(displayField: 'day')
+
       content_type.save
       content_type.publish
     end
