@@ -67,20 +67,6 @@ class AddTripDetailsPage < ContentfulMigrations::Migration
       content_type.save
       content_type.publish
 
-      # Remove Link URL; replace with Slug
-      field = content_type.fields.detect { |f| f.id == 'link_url' }
-      field.omitted = true
-      field.disabled = true
-    
-      # Save & Publish
-      content_type.save
-      content_type.publish
-
-      content_type.fields.destroy('link_url')
-
-      # Save & Publish
-      content_type.save
-      content_type.publish
     end
   end 
 end
