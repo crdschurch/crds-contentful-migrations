@@ -1,5 +1,3 @@
-# require 'pry'
-
 class AddTripDetailsPage < ContentfulMigrations::Migration
 
   include MigrationUtils
