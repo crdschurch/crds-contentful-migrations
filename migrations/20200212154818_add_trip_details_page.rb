@@ -8,6 +8,8 @@ class AddTripDetailsPage < ContentfulMigrations::Migration
       # Set validation for Restrictions
       validation_for_restrictions = Contentful::Management::Validation.new
       validation_for_restrictions.in = ['Background Check Required', 'None']
+      validation_for_full_trip = Contentful::Management::Validation.new
+      validation_for_full_trip.in = ['Yes']
 
       # Create new fields
       content_type = space.content_types.find('trip')
@@ -20,8 +22,9 @@ class AddTripDetailsPage < ContentfulMigrations::Migration
       content_type.fields.create(id: 'restrictions', name: 'Restrictions', type: 'Symbol', required: true, validations: [validation_for_restrictions])
       content_type.fields.create(id: 'total_cost', name: 'Total Cost', type: 'Symbol', required: true)
       content_type.fields.create(id: 'other_requirements', name: 'Other Requirements', type: 'Symbol')
-      content_type.fields.create(id: 'longitude', name: 'Longitude', type: 'Number', required: true)
+      content_type.fields.create(id: 'trip_full', name: 'Trip Full?', type: 'Symbol', validations: [validation_for_full_trip])
       content_type.fields.create(id: 'latitude', name: 'Latitude', type: 'Number', required: true)
+      content_type.fields.create(id: 'longitude', name: 'Longitude', type: 'Number', required: true)
       content_type.fields.create(id: 'faq1_title', name: 'FAQ 1 Title', type: 'Symbol', required: true)
       content_type.fields.create(id: 'faq1_subtitle', name: 'FAQ 1 Subtitle', type: 'Symbol')
       content_type.fields.create(id: 'faq1', name: 'FAQ 1', type: 'Text', required: true)
@@ -60,6 +63,7 @@ class AddTripDetailsPage < ContentfulMigrations::Migration
       field['settings'] = { 'format' => 'dateonly'}
       field = controls.detect { |e| e['fieldId'] == 'slug' }
       field['settings'] = {'helpText' => 'i.e. /nov-nepal/'}
+      field = controls.detect { |e| e['fieldId'] == 'trip_full' }['widgetId'] = "radio"
       editor_interface.update(controls: controls)
       editor_interface.reload
 
@@ -67,20 +71,6 @@ class AddTripDetailsPage < ContentfulMigrations::Migration
       content_type.save
       content_type.publish
 
-      # Remove Link URL; replace with Slug
-      field = content_type.fields.detect { |f| f.id == 'link_url' }
-      field.omitted = true
-      field.disabled = true
-    
-      # Save & Publish
-      content_type.save
-      content_type.publish
-
-      content_type.fields.destroy('link_url')
-
-      # Save & Publish
-      content_type.save
-      content_type.publish
     end
   end 
 end
