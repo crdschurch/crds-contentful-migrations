@@ -1,4 +1,4 @@
-class AddCareLinkToLocations < ContentfulMigrations::Migration
+class AddCareLinkToLocation < ContentfulMigrations::Migration
 
   include MigrationUtils
 
