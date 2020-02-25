@@ -37,10 +37,8 @@ class AddTripDetailsPage < ContentfulMigrations::Migration
       content_type.fields.create(id: 'lodging_image1', name: 'Lodging Image 1', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'lodging_image2', name: 'Lodging Image 2', type: 'Link', link_type: 'Asset')
       content_type.fields.create(id: 'lodging_image3', name: 'Lodging Image 3', type: 'Link', link_type: 'Asset')
-      content_type.fields.create(id: 'partner_name', name: 'Partner Name', type: 'Symbol')
-      content_type.fields.create(id: 'partner_description', name: 'Partner Description', type: 'Text')
-      content_type.fields.create(id: 'partner_image', name: 'Partner Image', type: 'Link', link_type: 'Asset')
-      content_type.fields.create(id: 'partner_website', name: 'Partner Website URL', type: 'Symbol')
+      content_type.fields.create(id: 'lodging_video', name: 'Lodging Video URL', type: 'Symbol')
+      content_type.fields.create(id: 'partner', name: 'Partner', type: 'Array', items: items_of_type('Entry', 'trip_partner'))
 
       # Set required fields
       field = content_type.fields.detect { |f| f.id == 'trip_details'}
