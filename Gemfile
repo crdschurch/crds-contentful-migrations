@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport'
-gem 'contentful-migrations', git: 'https://github.com/monkseal/contentful-migrations.rb', tag: 'v0.1.4'
+gem 'contentful-migrations', '~> 0.1.4'
 gem 'httparty'
 gem 'pry'
 gem 'rake'
