@@ -6,8 +6,6 @@ class AddSchemaToLocation < ContentfulMigrations::Migration
       content_type.save
       content_type.publish
     end
-  rescue Exception => e
-    binding.pry
   end
   def down
     with_space do |space|
