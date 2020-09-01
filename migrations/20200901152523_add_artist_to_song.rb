@@ -14,7 +14,9 @@ class AddArtistToSong < ContentfulMigrations::Migration
       field.omitted = true
       field.disabled = true
       content_type.save
-      content_type.publish
-    end
-  end
+      content_type.activate
+      content_type.fields.destroy('artist')
+      content_type.save
+   end
+  end 
 end
