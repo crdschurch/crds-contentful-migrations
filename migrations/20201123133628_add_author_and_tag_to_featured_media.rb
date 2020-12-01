@@ -1,4 +1,4 @@
-class AddAuthorAndTagsToFeaturedMedia < ContentfulMigrations::Migration
+class AddAuthorAndTagToFeaturedMedia < ContentfulMigrations::Migration
 
   include MigrationUtils
 
