@@ -5,7 +5,7 @@ class AddAnywhereToPromos < ContentfulMigrations::Migration
       content_type = space.content_types.find('promo')
       field = content_type.fields.detect { |f| f.id == 'target_audience' }
       validations = field.items.validations.first.in
-      new_option = 'Anywhere'
+      new_option = 'Crossroads Church Online'
       validations.push(new_option)
 
       content_type.save
