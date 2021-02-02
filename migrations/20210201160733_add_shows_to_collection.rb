@@ -16,9 +16,9 @@ class AddShowsToCollection < ContentfulMigrations::Migration
       field.omitted = true
       field.disabled = true
 
+      content_type.fields.destroy('featured_on_shows_landing_page')
       content_type.save
       content_type.activate
-      content_type.fields.destroy('featured_on_shows_landing_page')
     end
   end
 end
