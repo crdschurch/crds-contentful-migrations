@@ -1,8 +1,13 @@
 class AddLocationsToOnsiteGroupMeeting < ContentfulMigrations::Migration
+
+  include MigrationUtils
+
   def up
     with_space do |space|
       content_type = space.content_types.find('onsite_group_meeting')
       content_type.fields.create(id: 'locations', name: 'Locations', type: 'Array', items: items_of_type('Entry', ['location']))
+      content_type.save
+      content_type.publish
     end
   end
 
