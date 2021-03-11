@@ -16,10 +16,6 @@ class CreateEngagementBlock < RevertableMigration
       content_type.fields.create(id: 'target_url', name: 'Target Url', type: 'Symbol', required: true)	
       content_type.fields.create(id: 'tooltip_earned_content', name: 'Tool Tip Earned Content', type: 'Text')
       content_type.fields.create(id: 'tooltip_unearned_content', name: 'Tool Tip Unearned Content', type: 'Text')
-
-      validation_for_type = Contentful::Management::Validation.new
-      validation_for_type.in = ['Badge', 'Activity']
-      content_type.fields.create(id: 'type', name: 'Type', type: 'Symbol', required: true, validations: [validation_for_type])
       content_type.fields.create(id: 'enagement_id', name: 'Engagement ID', type: 'Integer')
       content_type.fields.create(id: 'disabled', name: 'Disabled', type: 'Boolean', required: true)
       
